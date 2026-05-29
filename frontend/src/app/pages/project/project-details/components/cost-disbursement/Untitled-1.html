@@ -1,0 +1,263 @@
+<!-- Loading starts -->
+<div id="loading-wrapper" *ngIf="isLoading">
+	<!-- <div class="spinner-border" role="status">
+		<span class="sr-only">Loading...</span>
+	</div> -->
+	<div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+<!-- Loading ends -->
+
+
+<!-- Container fluid start -->
+<div class="container-fluid" *ngIf="!isLoading">
+	<app-project-navbar projectId='{{projectId}}' activePage='costDisbursement'></app-project-navbar>
+
+	<!-- ************************* Main container start ************* ************* -->
+	<div class="main-container">
+		<!-- Page header start -->
+		<div class="page-header ">
+			<div class="row">
+				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-6 text-center">
+					<p class="fontmobile" style="text-align: left;">{{projectDetails.name}}</p>
+				</div>
+			</div>
+
+		</div>
+		<!-- Page header end -->
+		<!-- Content wrapper start -->
+		<div class="content-wrapper">
+
+			<!-- Row start -->
+			<!-- <div class="row gutters">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">Cost Project Image</div>
+								</div>
+								<div class="card-body">
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-8 col-lg-8 col-md-8 col-sm-6 col-12">
+							<div class="card" style="min-height: 365px;">
+								<div class="card-header">
+									<div class="card-title">Basic Details</div>
+								</div>
+								<div class="card-body">
+								</div>
+							</div>
+						</div>
+
+					</div> -->
+			<!-- Row end -->
+			<div mk-morris-js [options]="chartAreaOptions" [data]="disbursementGraphData" type="Bar"
+				style="height: 200px; width: 100%;"></div>
+			<div class="jumbotron text-left">
+				<form action="">
+					<div class="row font-weight-bold" style="font-size:1.1vw">
+						<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+							Actions
+						</div>
+						<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2" style="color: #1e6bb8;">
+							Serial
+						</div>
+						<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2" style="color: #1e6bb8;">
+							Date(YYYY-MM-DD)
+						</div>
+						<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2" style="color: #1e6bb8;">
+							Amount
+						</div>
+						<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4" style="color: #1e6bb8;">
+							Note
+						</div>
+					</div>
+					<br>
+					<div class="row" style="font-size:1.1vw">
+						<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+							<button type="button" class="block" data-toggle="modal" data-target="#addModal"
+								data-placement="top">+Add</button>
+						</div>
+						<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2" style="color: #1e6bb8;">
+
+						</div>
+						<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2" style="color: #1e6bb8;">
+
+						</div>
+						<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2" style="color: #1e6bb8;">
+
+						</div>
+						<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4" style="color: #1e6bb8;">
+
+						</div>
+					</div>
+					<br>
+					<div class="row" style="font-size:1.1vw" *ngFor="let data of tableData">
+						<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+							<i class="icon-border_color btn btn-info" data-toggle="modal" data-target="#editModal"></i>&nbsp;
+							<i class="icon-delete btn btn-danger" (click)='delCost()'></i>
+						</div>
+						<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+							{{ data.id }}
+						</div>
+						<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+							{{ data.disbursement_date }}
+						</div>
+						<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+							{{ data.disbursement_amount }}
+						</div>
+						<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+							{{ data.note }}
+						</div>
+					</div>
+					<br>
+				</form>
+			</div>
+			<br>
+			<strong>Remaining Balance : {{TotalAmount - ReceiveAmount}}</strong>
+			<!-- Row start -->
+			<!-- <div class="row gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+							<div class="card">
+								<div class="card-header">
+									<div class="card-title">Other Details</div>
+								</div>
+								<div class="card-body">
+								</div>
+							</div>
+						</div>
+					</div> -->
+			<!-- Row end -->
+
+		</div>
+
+		<!-- Content wrapper end -->
+
+	</div>
+	<!-- ************************* Main container end ************************** -->
+
+</div>
+
+
+<!-- modal cost db add -->
+
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="Upload Document"
+	aria-hidden="true">
+	<div class="modal-dialog modal-md" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="addNewTaskLabel">Add Cost</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+				<div class="row gutters">
+					<!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+						<label for="serial" class="float-right" style="font-weight: bolder; font-size: large;"> Serial:
+						</label>
+					</div>
+					<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+						<input type="number" name="" id="" style="width:100%">
+					</div>
+					<br><br><br> -->
+					<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+						<label for="serial" class="float-right" style="font-weight: bolder; font-size: large;"> Date:
+						</label>
+					</div>
+					<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+						<input type="date" name="" id="" style="width:100%" [(ngModel)]="costProject.date">
+					</div>
+					<br><br><br>
+					<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+						<label for="Amount" class="float-right" style="font-weight: bolder; font-size: large;"> Amount:
+						</label>
+					</div>
+					<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+						<input type="number" name="" id="" style="width:100%" [(ngModel)]="costProject.amount"> 
+					</div>
+					<br><br><br>
+					<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+						<label for="Note" class="float-right" style="font-weight: bolder; font-size: large;"> Note:
+						</label>
+					</div>
+					<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+						<input type="text" name="" id="" style="width:100%" [(ngModel)]="costProject.note">
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer custom">
+				<div class="left-side">
+					<button type="button" class="btn btn-link danger btn-block" data-dismiss="modal">Cancel</button>
+				</div>
+				<div class="divider"></div>
+				<div class="right-side">
+					<button type="button" class="btn btn-link success btn-block" id="addDisbursement" (click)="addDisbursementRecord()">Add</button>
+				</div>
+			</div>
+			<!-- </form> -->
+		</div>
+	</div>
+</div>
+
+<!-- modal cost db Edit -->
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="Upload Document"
+	aria-hidden="true">
+	<div class="modal-dialog modal-md" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="addNewTaskLabel">Edit Cost</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+				<div class="row gutters">
+					<!-- <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+						<label for="serial" class="float-right" style="font-weight: bolder; font-size: large;"> Serial:
+						</label>
+					</div>
+					<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+						<input type="text" name="" id="" style="width:100%" [(ngModel)]="costProject.serialNo">
+					</div>
+					<br><br><br> -->
+					<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+						<label for="date" class="float-right" style="font-weight: bolder; font-size: large;"> Date:
+						</label>
+					</div>
+					<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+						<input type="date" name="" id="" style="width:100%" [(ngModel)]="costProject.date">
+					</div>
+					<br><br><br>
+					<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+						<label for="amount" class="float-right" style="font-weight: bolder; font-size: large;"> Amount:
+						</label>
+					</div>
+					<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+						<input type="number" name="" id="" style="width:100%" [(ngModel)]="costProject.amount">
+					</div>
+					<br><br><br>
+					<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+						<label for="note" class="float-right" style="font-weight: bolder; font-size: large;"> Note:
+						</label>
+					</div>
+					<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+						<input type="text" name="" id="" style="width:100%" [(ngModel)]="costProject.note">
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer custom">
+				<div class="left-side">
+					<button type="button" class="btn btn-link danger btn-block" data-dismiss="modal">Cancel</button>
+				</div>
+				<div class="divider"></div>
+				<div class="right-side">
+					<button type="button" class="btn btn-link success btn-block" (click)="addCost()">Add</button>
+				</div>
+			</div>
+			<!-- </form> -->
+		</div>
+	</div>
+</div>

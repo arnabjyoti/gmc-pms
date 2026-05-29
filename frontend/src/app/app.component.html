@@ -1,0 +1,19 @@
+<app-tovnav *ngIf="isLoggedIn"></app-tovnav>
+<!-- Screen overlay start -->
+<div class="screen-overlay" *ngIf="isLoggedIn"></div>
+<!-- Screen overlay end -->
+<!-- <div [ngClass]="isLoggedIn ? 'container-fluid' : ''"> -->
+    <div [ngClass]="isLoggedIn ? '' : ''">
+
+    <router-outlet></router-outlet>
+    <!-- <div *ngIf="isLoggedIn"> -->
+        <!-- Footer start -->
+        <br><br><br>
+    <!-- </div> -->
+    <footer *ngIf="isLoggedIn" class="main-footer">
+        All rights reserved. GMC PROJECT MONITORING SYSTEM © 2026
+        <span style="float:right">Developed by-<a href="https://www.skaplink.com/" target="_blank">GMC</a>
+        </span>
+    </footer>
+    <!-- Footer end -->
+</div>

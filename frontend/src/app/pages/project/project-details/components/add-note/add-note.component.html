@@ -1,0 +1,155 @@
+<!-- Loading starts -->
+<div id="loading-wrapper" *ngIf="isLoading">
+    <!-- <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div> -->
+    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+<!-- Loading ends -->
+
+
+<!-- Container fluid start -->
+<div class="container-fluid p-0" *ngIf="!isLoading">
+
+    <app-project-navbar projectId='{{projectId}}' activePage='addNote'></app-project-navbar>
+
+    <!-- ************************* Main container start ************************** -->
+    <div class="main-container">
+
+        <!-- Page header start -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-6 col-6 text-center">
+                    <p class="fontmobile" style="text-align: left;">{{projectDetails.name}} </p>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6 text-center">
+                   <div class="row" style="text-align: center;">
+                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2 dontshowinmobile">
+                            <a style="color: white;" href="javascript:;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Print" (click)="print()">
+                            <i class="icon-print"></i>
+                            </a>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+                            <a style="color: white;"  href="javascript:;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Download CSV" (click)="download()">
+                            <i class="icon-cloud_download"></i> 
+                            </a>
+                        </div>
+                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8">
+                            <a style="color: white;" *ngIf="permission.addNote" href="#" data-toggle="modal" data-target="#note" data-placement="top" title=""
+                                data-original-title="Add Note">
+                                <i class="icon-plus"></i> &nbsp; New Note
+                            </a>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        <!-- Page header end -->
+
+        <!-- Page header start -->
+        <!-- <div class="page-header ">
+            <div class="row">
+                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-12 text-center">
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12 text-center">
+                    <span
+                        style="padding:5px 10px 5px 10px;border-radius:15px;background-color: aliceblue;color: aquamarine;">
+                        <a href="#" data-toggle="modal" data-target="#note" data-placement="top" title=""
+                            data-original-title="EditProject">
+                            <i class="icon-plus"></i> Add Note</a></span>
+                </div>
+            </div>
+
+        </div> -->
+        <!-- Page header end -->
+        
+
+        <!-- Content wrapper start -->
+        <div id="print-section">
+            <div class="content-wrapper" *ngIf="isResLoaded" id="componentID" style="background-color: rgb(194, 233, 220);">
+                <div *ngFor="let note of availableNote">
+                    <h5><strong>{{note.subject}}</strong></h5>
+                    <p class="text-note">{{note.note}}</p>
+                    <div style="text-align:right">
+                    <a href="javascript:;">Digitally signed by- <strong>{{note["user.name"]}}</strong> at
+                        {{note.createdAt | date : 'short'}}</a>
+                    </div>
+                    <hr />
+                </div>
+                <!-- <div *ngFor="let note of availableNote">
+                <h5><strong>New note</strong></h5>
+                <p style="margin-bottom: 0;margin-top: 5px;">Project needs to be completed in due time</p>
+                <a href="javascript:;" style="float:right">by <strong>Commisioner</strong> at {{note.createdAt | date : 'short'}}</a>
+                <hr/>
+            </div>
+            <div *ngFor="let note of availableNote">
+                <h5><strong>Reply note</strong></h5>
+                <p style="margin-bottom: 0;margin-top: 5px;">Project work is going on in full-swing</p>
+                <a href="javascript:;" style="float:right">by <strong>Chief Engineer</strong> at {{note.createdAt | date : 'short'}}</a>
+                <hr/>
+            </div>
+            <div *ngFor="let note of availableNote">
+                <h5><strong>Reply note</strong></h5>
+                <p style="margin-bottom: 0;margin-top: 5px;">Raw material required</p>
+                <a href="javascript:;" style="float:right">by <strong>Contractor</strong> at {{note.createdAt | date : 'short'}}</a>
+                <hr/>
+            </div> -->
+            </div>
+        </div>
+        <!-- Content wrapper end -->
+
+    </div>
+    <!-- ************************* Main container end ************************** -->
+
+    <div class="modal fade" id="note" tabindex="-1" role="dialog" aria-labelledby="Add Note" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addNewTaskLabel">New Note</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                    <div class="modal-body">
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label for="projectType">Address</label>
+                                    <div>
+                                        <select class="form-control" [(ngModel)]="noteObject.subject">
+                                            <option value="To whom">To whom</option>
+                                            <option *ngFor="let emp of gmcEmployees" value="{{emp.id}}">@{{emp.name}}</option>
+                                        </select>
+                                        <!-- <input type="text" class="form-control" name="note" maxlength="100" id="note"
+                                            [(ngModel)]="subject"> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label for="docDescription">Description</label>
+                                    <textarea class="form-control" name="description" id="" maxlength="2000"
+                                        placeholder="Enter Description" cols="30" rows="3" [(ngModel)]="noteObject.description"
+                                        style="resize: vertical;">
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer custom">
+                        <div class="left-side">
+                            <button type="button" class="btn btn-link danger btn-block"
+                                data-dismiss="modal">Cancel</button>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="right-side">
+                            <button type="button" (click)="saveNote()"
+                                class="btn btn-link success btn-block">Save</button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+</div>

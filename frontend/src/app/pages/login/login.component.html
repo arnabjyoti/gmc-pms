@@ -1,0 +1,242 @@
+
+<div class="root">
+<div class="bg">
+    <div class="row ">
+        <!-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-sm-12 p-1">
+			<marquee direction="left">
+				<b>Please use login credentials shared with the corressponding departments and ULB's</b>
+				</marquee>
+		</div> -->
+        <div class="col-md-8">
+            <!-- <h4 style="margin-left:10px ;bottom: 0px;position:fixed;color:rgb(39, 5, 230)" id="demo"> </h4> -->
+            <div class="minister-content" [hidden]="true">
+                <div class="minister-img">
+                    <img src="assets/ASHOK-SINGHAL.jpg" alt="">
+                </div>
+                <br><br><br><br><br><br><br><br><br><br><br>
+                <h2 class="text-dark">Mr. Ashok Singhal, GDD Minister</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            
+            <div class="login-screen" >
+                <div class="login-box" style="background: #ffffff; border-radius: 15px;opacity: 0.9;">
+                    <div class="row">
+                            <div class="col-md-4 col-4 ">
+                                <div class="p-1 count-bg text-center border border-light rounded">
+                                    <b>Total Projects</b>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-4">
+                                <div class="p-1 count-bg text-center border border-light rounded">
+                                    <b>On going projects</b>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-4">
+                                <div class="p-1 count-bg text-center border border-light rounded">
+                                    <b>Completed projects</b>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-4 ">
+                                <div class="h4 text-center pt-1 fw-bold bg-grn ">{{projectCountRec.totalCount}}</div>
+                        </div>
+                        <div class="col-md-4 col-4">
+                                <div class="h4 text-center pt-1 fw-bold bg-blu">{{projectCountRec.cuurentCount}}</div>
+                        </div>
+                        <div class="col-md-4 col-4">
+                                <div class="h4 text-center pt-1 fw-bold bg-rd ">{{projectCountRec.completedCount}}</div>
+                        </div>
+                    <div class="col-12"> 
+                        <div class="text-center"><b>Latest updated at: {{LocalDate}}</b></div>
+                    </div>
+                </div>
+                        </div>
+                        <br>
+                        <div class="login-box" style="background: #ffffff; border-radius: 15px;opacity: 0.9;">
+                            <div class="row">
+                        <!-- <div class="col-3" ></div> -->
+                        <div class="col-12 text-center" style="text-align:center;">
+                            <a href="javascript:;" class="login-logo">
+                                <img src="assets/apple-touch-icon.png" alt="AIIDCPMS"/>
+                            </a>
+                            <!-- <a href="javascript:;" class="login-logo">
+                                <img src="assets/Gati-Shakti-Logo.jpg" alt="AIIDCPMS" />
+                            </a> -->
+                        </div>
+                    </div>
+                    
+                        
+                        
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p class="justify-content-md-center text-center" style="display:flex; padding-top: 10px; font-weight: 700; font-size: 22px; line-height: 100%;">GMC</p>
+                            <p class="justify-content-md-center text-center" style="margin-top: 10px;"><strong>Project Monitoring System</strong></p>
+                        </div>
+                    </div>
+                    <!-- <a href="javascript:;" class="login-logo">
+                        <img src="assets/ashok-s.png" alt="GMCPMS"/>
+                    </a> -->
+                    
+                    
+                    <h5 style="color:#5684ad;margin-top: 10px;">Welcome Back,<br />Please Login to your Account.</h5>
+                    <div class="form-group">
+                        <input type="email" [(ngModel)]="userCredentials.email" class="form-control" placeholder="Email Address" />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" [(ngModel)]="userCredentials.password" class="form-control" placeholder="Password" (change)="login()"/>
+                    </div>
+                    <div class="actions">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="remember_pwd">
+                            <label class="custom-control-label" for="remember_pwd" style="color:#3b5d7a;">Remember me</label>
+                        </div>
+                        <button  (click)="login()" class="btn btn-danger" [disabled]="isLogin">Login</button>
+                    </div>
+                    <div class="forgot-pwd">
+                        <a class="link" href="forgot-pwd.html">Forgot password?</a>
+                    </div>
+                    <!-- <div class="text-center bg-primary text-">
+                    <div style="--tw-text-opacity: 1;
+                    color: bisque">Download from Google Play</div>
+                        <i class="fa-brands fa-google-play text-white fa-lg"></i> &nbsp; &nbsp;
+                        <a class="link h5 text-white" href="https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=com.dohuageotag">DoHuA Geotag Mobile App</a>
+                    </div> -->
+                    <hr>
+                    <a href="#" class="">
+                        <p style="font-size:0.8em;color: #544e48; margin-left: 12px"><strong>Designed and Developed by: GMC</strong></p>
+                    </a>
+                </div>
+                <!-- <div class="login-box" style="background: #ffffff;border-radius: 15px;margin-top: 10px;opacity: 0.78;">
+                    <button (click)="guestLogin()" class="btn btn-warning btn-block"
+                        [disabled]="isLogin">Public View of the Site</button>
+
+                    <button (click)="publicSiteView()" class="btn btn-warning btn-block"
+                        [disabled]="isLogin">Assembly Question <i class="fas fa-question"></i></button>    
+                </div> -->
+                
+                <!-- <div class="login-box" style="background: #ffffff;border-radius: 15px;margin-top: 10px;opacity: 0.78;">
+                   <div class=" h3 text-center p-2">
+                        Contact Us
+                   </div>
+                   <div class="card h6 bg-primary mt-2 p-2 text-white">
+                    <a style="color: #fff; font-size: 14px;" href="https://wa.me/91xxxxxxxxxx">Mobile Number: +91 xxxxxxxxxx <i class="fa-brands fa-whatsapp"></i></a>
+<br>
+
+                    <a style="color: #fff; font-size: 14px;" href="mailto:dohuapmms.helpdesk.com">Email: aiidcpmms.helpdesk@gmail.com <i class="fa-solid fa-envelope"></i></a>
+                   </div>
+                   
+                </div> -->
+                
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="footer-login">
+    <p>Help? +91 8724824070/</p>
+  </div> -->
+    <!-- <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12" style="border-radius:30px;">
+                <div class="login-screen">
+                    <div class="login-box" style="background: #39a1bf; border-radius: 15px">
+                        <a href="javascript:;" class="login-logo"
+                            style="display:flex;align-items: center; font-size: 20px;">
+                            <img src="assets/img/gmc-logo.png" alt="GMCPMS" />GMC PMS
+                        </a>
+                        <p class="justify-content-md-center"><strong>Public Works Management System</strong></p>
+                        <h5 style="color:aliceblue;">Welcome Back,<br />Please Login to your Account.</h5>
+                        <div class="form-group">
+                            <input type="email" [(ngModel)]="userCredentials.email" class="form-control"
+                                placeholder="Email Address" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" [(ngModel)]="userCredentials.password" class="form-control"
+                                placeholder="Password" />
+                        </div>
+                        <div class="actions md-4">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="remember_pwd">
+                                <label class="custom-control-label" for="remember_pwd" style="color:aliceblue;">Remember
+                                    me</label>
+                            </div>
+                            <button (click)="login()" class="btn btn-danger" [disabled]="isLogin">Login</button>
+                        </div>
+                        <div class="forgot-pwd">
+                            <a class="link" href="forgot-pwd.html">Forgot password?</a>
+                        </div>
+                        <hr>
+                        <a href="#" class="">
+                            <p style="font-size:0.8em;color: #544e48; margin-left: 12px"><strong>Powered by</strong><img
+                                    src="assets/skaplink.png" alt="GMCPMS"
+                                    style="height: 15px; width: 180px; margin-right:28px; margin-right: 14px;"
+                                    ></p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 text-center justify-content-md-center">
+                <div class="login-screen">
+                    <div class="login-box" style="background: #39a1bf; border-radius: 15px">
+                        <button (click)="publicSiteView()" class="btn btn-warning btn-block"
+                            [disabled]="isLogin">Public View of the Site</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div> -->
+</div>
+
+
+
+
+<!-- <div class="bg">
+    <div class="container">
+                
+            <div class="row justify-content-md-center">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12" style="margin-top:50px;border-radius:30px;">
+                    <div class="login-screen" >
+                        <div class="login-box" style="background: #39a1bf; border-radius: 15px">
+                            <a href="javascript:;" class="login-logo" style="display:flex;align-items: center; font-size: 20px;">
+                                <img src="assets/img/gmc-logo.png" alt="GMCPMS"/>GMC PMS
+                            </a>
+                            <p class="justify-content-md-center"><strong>Public Works Management System</strong></p>
+                            <h5 style="color:aliceblue;">Welcome Back,<br />Please Login to your Account.</h5>
+                            <div class="form-group">
+                                <input type="email" [(ngModel)]="userCredentials.email" class="form-control" placeholder="Email Address" />
+                            </div>
+                            <div class="form-group">
+                                <input type="password" [(ngModel)]="userCredentials.password" class="form-control" placeholder="Password"/>
+                            </div>
+                            <div class="actions mb-4">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="remember_pwd">
+                                    <label class="custom-control-label" for="remember_pwd" style="color:aliceblue;">Remember me</label>
+                                </div>
+                                <button  (click)="login()" class="btn btn-danger" [disabled]="isLogin">Login</button>
+                            </div>
+                            <div class="forgot-pwd">
+                                <a class="link" href="forgot-pwd.html">Forgot password?</a>
+                            </div>
+                            <hr>
+                            <a href="#" class="">
+                               <p style="font-size:0.8em;color: #544e48; margin-left: 12px"><strong>Powered by</strong><img src="assets/skaplink.png" alt="GMCPMS" style="height: 15px; width: 180px; margin-right:28px; margin-right: 14px;" align="right"></p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-md-center" style="margin-top:-100px;">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <div class="login-screen" >
+                        <div class="login-box" style="background: #39a1bf; border-radius: 15px">
+                            <button  (click)="publicSiteView()" class="btn btn-warning btn-block" [disabled]="isLogin">Public View of the Site</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div> -->

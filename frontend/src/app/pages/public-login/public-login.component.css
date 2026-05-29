@@ -1,0 +1,9 @@
+.bg {
+    /* background-image: url("../../../assets/finalImage.jpeg"); */
+    background-image: url("/assets/login-bg.jpg") !important;
+    min-height: 100vh;
+    background-position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-width: 100%;
+}

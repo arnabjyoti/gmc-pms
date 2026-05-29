@@ -1,0 +1,265 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProjectDetailsService } from '../../project-details.service';
+import * as moment from 'moment';
+import { LocalDataSource } from 'ng2-smart-table';
+
+@Component({
+  selector: 'app-physical-progress',
+  templateUrl: './physical-progress.component.html',
+  styleUrls: ['./physical-progress.component.css']
+})
+export class PhysicalProgressComponent implements OnInit {
+  public projectId: any;
+  public chartAreaData: any = [];
+  public chartAreaOptions: any;
+  projectObject: any;
+  public projectDetails={
+    name:''
+  };
+  projectStatus: any;
+  progress: any;
+  public progressTableSource: LocalDataSource;
+
+  public progressGraphLebels = [];
+  public progressPercentageData = [];
+  public totalPercentage = [];
+  public progressTableData = [];
+  public isLoading : boolean = true;
+
+  settings = {
+    add: {
+      addButtonContent: '<i class="icon-add"></i>',
+      createButtonContent: '<i class="icon-check"></i>',
+      cancelButtonContent: '<i class="icon-close"></i>',
+      confirmCreate: true,
+    },
+    edit: {
+      editButtonContent: '<i class="icon-border_color"></i>',
+      saveButtonContent: '<i class="icon-check"></i>',
+      cancelButtonContent: '<i class="icon-close"></i>',
+    },
+    delete: {
+      deleteButtonContent: '<i class="icon-delete"></i>',
+      confirmDelete: true,
+    },
+    columns: {
+      disbursement_date: {
+        title: 'Date',
+        type: 'date',
+      },
+      disbursement_amount: {
+        title: 'Amount',
+        type: 'string',
+      },
+      note: {
+        title: 'Note',
+        type: 'string',
+      },
+    },
+  };
+
+  // Status table stucture settings
+  statusTable_Config = {
+    add: {
+      addButtonContent: '<i class="nb-plus"></i>',
+      createButtonContent: '<i class="nb-checkmark"></i>',
+      cancelButtonContent: '<i class="nb-close"></i>',
+      confirmCreate: true,
+    },
+    edit: {
+      editButtonContent: '<i class="nb-edit"></i>',
+      saveButtonContent: '<i class="nb-checkmark"></i>',
+      cancelButtonContent: '<i class="nb-close"></i>',
+    },
+    delete: {
+      deleteButtonContent: '<i class="nb-trash"></i>',
+      confirmDelete: true,
+    },
+    columns: {
+      date: {
+        title: "Date",
+        filter: false,
+        editor: {
+          type: Date
+        },
+      },
+      status: {
+        title: 'Project Status',
+        filter: false,
+        type: 'html',
+        editor: {
+          type: 'list',
+          config: {
+            list: [
+              { value: '', title: 'Initiated' },
+              { value: 'Initiated', title: 'Initiated' },
+              { value: 'Approved', title: 'Approved' },
+              { value: 'Rejected', title: 'Rejected' },
+              { value: 'Delivered', title: 'Delivered' },
+              { value: 'Completed', title: 'Completed' }
+            ],
+          },
+        }
+      },
+      user: {
+        title: 'Updated By',
+        filter: false,
+        type: 'string',
+      },
+    },
+  };
+
+  progressTable_Config = {
+    add: {
+      addButtonContent: '<i class="icon-add btn btn-info btn-block">Add</i> ',
+      createButtonContent: '<i class="icon-check btn btn-outline-primary"></i>&nbsp;&nbsp;',
+      cancelButtonContent: '<i class="icon-close btn btn-outline-danger"></i>',
+      confirmCreate: true,
+    },
+    edit: {
+      editButtonContent: '<i class="icon-border_color btn btn-info"></i>&nbsp;&nbsp;',
+      saveButtonContent: '<i class="icon-check btn btn-outline-primary"></i>&nbsp;&nbsp;',
+      cancelButtonContent: '<i class="icon-close btn btn-outline-danger"></i>',
+    },
+    delete: {
+      deleteButtonContent: '<i class="icon-delete btn btn-danger"></i>',
+      confirmDelete: true,
+    },
+    columns: {
+      id: {
+        title: 'Serial',
+        type : 'integer',
+      },
+      progress_date: {
+        title: 'Date (YYYY-MM-DD)',
+        type: 'date',
+      },
+      progress_percent: {
+        title: 'Percentage Completed(%)',
+        type: 'integer',
+      },
+      note: {
+        title: 'Note',
+        type: 'string',
+      },
+    },
+  };
+  // End
+
+  constructor(
+    private route: ActivatedRoute,
+    private projectDetailsService: ProjectDetailsService
+  ) {
+    this.route.paramMap.subscribe((params) => {
+      this.projectId = params.get('projectId');
+    });
+  }
+
+  ngOnInit(): void {
+    this.getProjectById();
+    this.chartAreaOptions = {
+      xkey: 'progress_date',
+      ykeys: ['progress_percent', 'total_percent'],
+      labels: ['Progress Percentage', 'Total Percentage'],
+      behaveLikeLine: !0,
+      pointSize: 0,
+      pointStrokeColors: ['#1a8e5f'],
+      gridLineColor: "#e1e5f1",
+      lineColors: ['#1a8e5f'],
+      gridtextSize: 10,
+      fillOpacity: 0.7,
+      lineWidth: 0,
+      hideHover: "auto",
+      resize: true,
+      redraw: true,
+    };
+  }
+
+  getProjectById = () => {
+    if (this.projectId) {
+      this.projectDetailsService.getProjectById(this.projectId, (res: any) => {
+        this.projectObject = res;
+        this.isLoading = false;
+        console.log("Project Object", res);
+        this.projectDetails = this.projectObject['project'];
+        this.projectStatus = this.projectObject['status'];
+        // this.depictDisbursementGraph(this.projectObject);
+        this.depictProgressGraph(this.projectObject);
+
+      });
+    } else {
+      console.log("Oopse!! Something went wrong");
+    }
+  }
+
+  depictProgressGraph = (projectObject: { [x: string]: any; }) => {
+    this.progress = projectObject['progress'];
+    console.log(this.progress);
+    this.progressGraphLebels = [];
+    this.progressPercentageData = [];
+    this.progressTableData = [];
+    let data = {};
+    let graphObj = {};
+    let arr = [];
+    this.progress.map((item: any) => {
+      graphObj = {
+        progress_date: moment(item.progress_date).format('DD, MMM YYYY'),
+        progress_percent: item.progress_percent + '%',
+        total_percent: 100 + '%'
+      }
+      arr.push(graphObj);
+      data = {
+        id : item.id,
+        progress_date: moment(item.progress_date).format('DD-MM-YYYY'),
+        progress_percent: item.progress_percent + '%',
+        note: item.note,
+      }
+      this.progressTableData.push(data);
+    });
+    this.chartAreaData = arr;
+    this.initializeProgressTable(this.progressTableData);
+  }
+
+  initializeProgressTable(progressTableData: any) {
+    this.progressTableSource = new LocalDataSource(progressTableData);
+  }
+
+  // Start:Method to add project progress              
+  addProgressRecord = (event) => {
+    const requestObject = {
+      project_id: this.projectId,
+      progress_date: event.newData.progress_date,                                //moment().format('YYYY-MM-DD')
+      progress_percent: event.newData.progress_percent,
+      note: event.newData.note
+    };
+    console.log("Progress Record", requestObject);
+    this.projectDetailsService.addProjectProgress(requestObject, (res: any) => {
+      console.log(res);
+      // let data = {
+      //   progress_date: moment(res.progress_date).format('MM/DD/YYYY'),
+      //   progress_percent: res.progress_percent,
+      //   note: res.note,
+      // }
+      // console.log(data);
+      // this.progressTableData.push(data);
+      // this.initializeProgressTable(this.progressTableData);
+      // this.progressTableSource = this.progressTableData;
+      this.progressTableSource.empty();
+      this.getProjectById();
+    });
+  }
+  // End
+
+  onDeleteConfirm(event : any): void {
+    if (window.confirm('Are you sure you want to delete?')) {
+      let id = event.data.id;
+      this.projectDetailsService.deleteProgressById(id,(data : any) => {
+        this.getProjectById(); 
+        event.confirm.resolve();
+      });
+    } else {
+      event.confirm.reject();
+    }
+  }
+}

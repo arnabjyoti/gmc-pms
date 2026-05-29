@@ -1,0 +1,77 @@
+<!-- Header start -->
+<header class="header">
+  <div class="logo-wrapper">
+    <a routerLink="/home" class="logo">
+      <img src="assets/apple-touch-icon.png" style="min-height: 80px !important;" alt="GMC" />
+      <!-- <img src="assets/Gati-Shakti-Logo.jpg" alt="AIIDC" /> -->
+    </a>
+    
+    <h3 style="font-weight: unset; color: aliceblue;text-transform: uppercase;" class="top-heading-lg">GMC<br>
+      <span style="font-size: 18px;">PROJECT MONITORING SYSTEM</span>
+    </h3>
+    
+  </div>
+
+  <div class="header-items">
+    
+    <ul class="header-actions">
+      <li></li>
+      <li><button class="btn btn-success" *ngIf="isCitizen" (click)="signout()">login</button></li>
+      <li class="dropdown" *ngIf="!isCitizen">
+        <a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
+          <span class="user-name" style="color:aliceblue !important;margin-right: 10px;">Welcome {{user.name}}</span>
+          <!-- <span class="avatar">{{shortName}}<span class="status busy"></span></span> -->
+          <span class="avatar">{{shortName}}</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userSettings">
+          <div class="header-profile-actions">
+            <div class="header-user-profile">
+              <div class="header-user">
+                <img src="{{user.avatar}}" alt="Profile" />
+              </div>
+              <h5 class="text-center">{{user.name}}</h5>
+            </div>
+            <a href="#" target="_blank"><i class="icon-book"></i> User
+              Manual</a>
+            <!-- <a href="https://youtu.be/14x4MfPAiUg" target="_blank"><i class="icon-video"></i> Tutorial Video</a> -->
+            <!-- <a href="https://youtu.be/wca69PbpEM8" target="_blank"><i class="icon-video"></i> Tutorial Video</a> -->
+            <a href="https://youtu.be/" target="_blank"><i class="icon-video"></i> Tutorial Video</a>
+            <a [routerLink]="['/reset-password']" *ngIf="!isCitizen"><i class="icon-lock"></i> Password reset</a>
+            <a href="javascript:;" (click)="signout()"><i class="icon-log-out1"></i> Sign Out</a>
+          </div>
+        </div>
+      </li>
+      <li class="dropdown" *ngIf="!isCitizen">
+        <a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
+          <span class="avatar"><i class="icon-chat"></i></span>
+          <span *ngIf="unreadMsg?.length!==0" class="status"
+            style="margin-top:-10px;margin-left:-10px;font-size:1.3em;color:white;font-weight:bold;"><sup class="notCount">{{unreadMsg.length}}</sup></span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userSettings" style="height:250px;width:350px;">
+          <div class="header-profile-actions">
+            <span *ngIf="unreadMsg.length===0">
+              <div class="text-center">
+                <!-- <p style="color:gray;margin-top:20%;">No unread note available</p> -->
+                <h4 style="color:gray;margin-top:20%;">No unread note available</h4>
+              </div>
+            </span>
+            <span *ngIf="unreadMsg.length!==0">
+              <div class="text-truncate" *ngFor="let msg of unreadMsg" style="width: 345px;">
+                <a href="javascript:;" (click)="redirectToNotes(msg.projectId)"><i class="icon-chat"></i>
+                  <h6>{{msg.note}}</h6>
+                </a>
+              </div>
+            </span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <a href="#" id="userSettings" class="user-settings" data-toggle="tooltip" data-placement="left" title="" data-original-title="Quick Settings">
+          <span class="avatar"><i class="icon-home"></i></span>
+        </a>
+      </li>
+    </ul>
+    <!-- Header actions end -->
+  </div>
+</header>
+<!-- Header end -->

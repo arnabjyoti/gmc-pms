@@ -1,0 +1,44 @@
+{
+  "development": {
+    "username": "root",
+    "password": "",
+    "database": "dohua_db",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": false,
+    "FILE_UPLOAD_PATH": "/home/ec2-user/dohua/files",
+    "cert": {
+      "key": "./cert/aiidcpms.com.key",
+      "crt": "./cert/aiidcpms.com.crt",
+      "bundle": "./cert/aiidcpms.com.ca-bundle"
+    }
+  },
+  "test": {
+    "username": "root",
+    "password": "",
+    "database": "aiidc_dispur",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": false,
+    "FILE_UPLOAD_PATH": "D:\\AIIDC\\Backend\\image",
+    "cert": {
+      "key": "./cert/aiidcpms.com.key",
+      "crt": "./cert/aiidcpms.com.crt",
+      "bundle": "./cert/aiidcpms.com.ca-bundle"
+    }
+  },
+  "production": {
+    "username": "senioedu_dohua",
+    "password": "AssamDohua@db",
+    "database": "senioedu_dohua_db",
+    "host": "216.10.240.89",
+    "dialect": "mysql",
+    "operatorsAliases": false,
+    "FILE_UPLOAD_PATH": "/home/ec2-user/dohua/files",
+    "cert": {
+      "key": "./cert/aiidcpms.com.key",
+      "crt": "./cert/aiidcpms.com.crt",
+      "bundle": "./cert/aiidcpms.com.ca-bundle"
+    }
+  }
+}

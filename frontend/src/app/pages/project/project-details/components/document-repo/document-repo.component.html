@@ -1,0 +1,225 @@
+<!-- Loading starts -->
+<div id="loading-wrapper" *ngIf="isLoading">
+    <!-- <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div> -->
+    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+<!-- Loading ends -->
+
+
+<!-- Container fluid start -->
+<div class="container-fluid p-0" *ngIf="!isLoading">
+    <app-project-navbar projectId='{{projectId}}' activePage='docGallery'></app-project-navbar>
+    <!-- ************************* Main container start ************************** -->
+    <div class="main-container">
+
+        <!-- Page header start -->
+        <div class="page-header" >
+            <div class="row">
+                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-9 col-6 text-center">
+                    <p class="fontmobile" style="text-align: left;">{{projectDetails.name}}</p>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-6 text-center" style="padding-right:0px;" *ngIf="!isDirectoryOpen">
+                    <div *ngIf="user.accessKeyword == projectDetails.accessKeyword">
+                        <a style="color: white;" href="#" data-toggle="modal" data-target="#addNewFolder" data-placement="top" title="" data-original-title="New Folder">
+                            <i class="icon-plus"></i> &nbsp;New Folder
+                            </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page header end -->
+
+        <!-- Content wrapper start -->
+        <div class="content-wrapper" >
+            <!-- Row start -->
+            <div class="row gutters" *ngIf="!isDirectoryOpen">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="documents-section">
+                        <!-- Row start -->
+                        <div class="row no-gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 docs-type-container" style="overflow: auto;">
+                                <div class="documents-container">
+                                    <div class="documentsContainerScroll">
+                                        <div class="documents-body">
+                                            <!-- Row start -->
+                                            <div class="row gutters">
+                                                
+                                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-6" *ngFor="let folder of folders">
+                                                    <a href="javascript:;" (click)="openDirectory(folder)">
+                                                    <div class="doc-block">
+                                                        <i class="icon-folder" style="font-size: 5em; color: #ddc808;"></i>
+                                                        <div class="doc-title">{{folder.original_file_name}}</div>
+                                                    </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <!-- Row end -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Row end -->
+                    </div>
+                </div>
+            </div>
+            <!-- Row end -->
+            <!-- Row start -->
+                <div class="row gutters" *ngIf="isDirectoryOpen">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="documents-section">
+                            <!-- Row start -->
+                            <div class="row no-gutters">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 docs-type-container" style="padding-top:0px;">
+                                    <div class="documents-container" style="overflow: scroll !important;">
+                                        <div class="documents-header" *ngIf="permission.uploadDocument">
+                                            <h4><a href="javascript:;" (click)="closeDirectory()"><i class="icon-arrow-with-circle-left" style="font-size: 1.5em; color: #198e5f;"></i></a> &nbsp; <i class="icon-folder" style="font-size: 1.5em; color: #198e5f;"></i> {{currentFolderName}}</h4>
+                                            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#uploadDocument"><i class="icon-upload"></i>&nbsp; Upload Document</button>
+                                        </div>
+                                        <div class="tasksContainerScroll">
+                                            <div class="documents-body">
+                                                <!-- Row start -->
+                                                <span *ngIf="currentFolderDocuments.length!==0">
+                                                <div class="row gutters">
+                                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12" *ngFor="let doc of currentFolderDocuments">
+                                                        <div class="doc-block">
+                                                            <div class="doc-icon">
+                                                                <img src="assets/img/docs/pdf.svg" alt="Doc Icon" />
+                                                            </div>
+                                                            <div class="doc-title">{{doc.title}}</div>
+                                                            <a href="{{endpoint}}/docs/{{projectId}}/{{doc.original_file_name}}" target="_blank" class="btn btn-primary btn-lg">Download</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </span>
+                                                <!-- Row end -->
+                                                <!-- Row start -->
+                                                <span *ngIf="currentFolderDocuments.length===0">
+                                                    <div class="row gutters">
+                                                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12 text-center">
+                                                            <h5 style="color:gray">No documents found</h5>
+                                                        </div>
+                                                    </div>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Row end -->
+                        </div>
+                    </div>
+                </div>
+            <!-- Row end -->
+        </div>
+        <!-- Content wrapper end -->
+
+    </div>
+    <!-- ************************* Main container end ************************** -->
+
+    <div class="modal fade" id="addNewFolder" tabindex="-1" role="dialog" aria-labelledby="addNewDocumentLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addNewDocumentLabel">Create folder</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row gutters">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="form-group">
+                                <label for="folderName">Folder Name</label>
+                                <input type="text" class="form-control" id="folderName" [(ngModel)]="newDirectoryName" placeholder="Folder name">
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="modal-footer custom">
+                    <div class="left-side">
+                        <button type="button" class="btn btn-link danger btn-block" data-dismiss="modal">Cancel</button>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="right-side">
+                        <button type="button" (click)="createDirectory()" class="btn btn-link success btn-block">Create</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload file modal -->
+    <div class="modal fade" id="uploadDocument" tabindex="-1" role="dialog" aria-labelledby="Upload Document" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addNewTaskLabel">Upload document</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form name="uploadForm" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label for="projectType">Document Title</label>
+                                    <div>
+                                        <select class="form-control"  name="type" [(ngModel)]="uploadDocObject.type">
+                                            <option value="">Select document type</option>
+                                            <option value="Administrative Approval">Administrative Approval</option>
+                                            <option value="Notice Inviting Tender">Notice Inviting Tender</option>
+                                            <option value="Letter of Intent">Letter of Intent</option>
+                                            <option value="Tender Document">Tender Document</option>
+                                            <option value="Request for proposal RFP">Request for proposal RFP</option>
+                                            <option value="Work Order">Work Order</option>
+                                            <option value="Technical Sanction">Technical Sanction</option>
+                                            <option value="Financial Sanction">Financial Sanction</option>
+                                            <option value="Completion Certificate">Completion Certificate</option>
+                                            <option value="Utilization Certificate">Utilization Certificate</option>
+                                            <option value="Detail Project Report (DPR)">Detail Project Report (DPR)</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label for="docDescription">Description</label>
+                                    <textarea class="form-control" name="description" [(ngModel)]="uploadDocObject.description"  id="" placeholder="Description" cols="30" rows="3">{{uploadDocObject.description}}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-12">
+                                <label for="file" style="margin-top:8px;">File</label>
+                            </div>
+                            <div class="col-xl-11 col-lg-11 col-md-11 col-sm-11 col-12">
+                                <div class="form-group">
+                                    <label class="custom-file-label" for="file">{{chooseFile}}</label>
+                                    <input type="file" class="custom-file-input" aria-describedby="inputGroupFileAddon01" name="file" id="file"
+                                        (change)="onFileSelect($event)">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer custom">
+                        <div class="left-side">
+                            <button type="button" class="btn btn-link danger btn-block" data-dismiss="modal">Cancel</button>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="right-side">
+                            <button type="button" (click)="handleUploadDocument()" class="btn btn-link success btn-block">Upload</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- end of upload file -->
+
+</div>
+<!-- Container fluid end -->

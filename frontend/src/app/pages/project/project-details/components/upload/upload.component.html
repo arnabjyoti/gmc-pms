@@ -1,0 +1,107 @@
+<!-- <form [formGroup]="uploadForm" name="uploadForm" (ngSubmit)="onSubmit($event)" enctype="multipart/form-data"> -->
+    <!-- <form  name="uploadForm"  enctype="multipart/form-data">
+<div class="row gutters" *ngIf="docType==='docGallery'">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="form-group">
+            <label for="projectType">Document Title</label>
+            <div>
+                <select class="form-control"  name="projectType">
+                    <option value="Administrative Approval">Administrative Approval</option>
+                    <option value="Notice Inviting Tender">Notice Inviting Tender</option>
+                    <option value="Tender Document">Tender Document</option>
+                    <option value="Work Order">Work Order</option>
+                    <option value="Technical Sanction">Technical Sanction</option>
+                    <option value="Financial Sanction">Financial Sanction</option>
+                    <option value="Completion Certificate">Completion Certificate</option>
+                    <option value="Utilization Certificate">Utilization Certificate</option>
+                    <option value="Utilization Certificate">Other</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="form-group">
+            <label for="projectTitle">Description</label>
+            <textarea class="form-control" name="" id="" placeholder="Project title" cols="30" rows="10"></textarea>
+        </div>
+    </div>
+</div>
+<div class="row gutters" *ngIf="docType==='imageGallery'">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="form-group">
+            <label for="caption">Caption</label>
+            <input type="text" class="form-control"  placeholder="Image caption">
+        </div>
+    </div>
+</div>
+<div class="row gutters">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="form-group">
+            <label for="file">Document</label>
+            <input type="file" class="form-control" name="file" id="file">
+        </div>
+    </div>
+</div>
+</form> -->
+
+
+
+
+
+
+<!-- <div class="container">
+    <form [formGroup]="uploadForm" name="uploadForm" (ngSubmit)="onSubmit($event)" enctype="multipart/form-data">
+      <div class="row" *ngIf="docType==='docGallery'">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="title" class="label">Document Title</label>
+            <nb-select nbSelect fullWidth placeholder="Choose Document Name" [(selected)]="docTitle" required>
+              <nb-option value="Administrative Approval">Administrative Approval</nb-option>
+              <nb-option value="Notice Inviting Tender">Notice Inviting Tender</nb-option>
+              <nb-option value="Tender Document">Tender Document</nb-option>
+              <nb-option value="Work Order">Work Order</nb-option>
+              <nb-option value="Technical Sanction">Technical Sanction</nb-option>
+              <nb-option value="Financial Sanction">Financial Sanction</nb-option>
+              <nb-option value="Completion Certificate">Completion Certificate</nb-option>
+              <nb-option value="Utilization Certificate">Utilization Certificate</nb-option>
+              <nb-option value="Utilization Certificate">Other</nb-option>
+            </nb-select>
+          </div>
+          <div class="form-group">
+            <label for="docDescription" class="label">Description</label>
+            <textarea rows="4" nbInput fullWidth shape="round" [value]="docDescription"
+              (input)="docDescription = $event.target.value" placeholder="Description..." required></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="docType==='imageGallery'">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="imgCaption" class="label">Caption</label>
+            <input nbInput fullWidth [value]="imgCaption" (input)="imgCaption = $event.target.value"
+              placeholder="Caption..." required>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="custom-file">
+            <label for="file" class="label">Document Title</label>
+            <label class="custom-file-label" for="file">{{chooseFile}}</label>
+            <input type="file" class="custom-file-input" aria-describedby="inputGroupFileAddon01" name="file" id="file"
+              (change)="onFileSelect($event)">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <button type="submit" class="btn btn-primary" id="inputGroupFileAddon01">Upload</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div> -->
+  

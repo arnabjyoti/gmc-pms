@@ -1,0 +1,164 @@
+<!-- Loading starts -->
+<div id="loading-wrapper" *ngIf="isLoading">
+    <!-- <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div> -->
+    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+<!-- Loading ends -->
+
+
+<!-- Container fluid start -->
+<div class="container-fluid p-0" *ngIf="!isLoading">
+    <app-project-navbar projectId='{{projectId}}' activePage='imageGallery'></app-project-navbar>
+
+    <!-- ************************* Main container start ************************** -->
+    <div class="main-container">
+
+        <!-- Page header start -->
+        <div class="page-header ">
+            <div class="row">
+                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-6 text-center">
+                    <p class="fontmobile" style="text-align: left;">{{projectDetails.name}}</p>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-6 text-center" style="padding-right:0px;" *ngIf="user.accessKeyword == projectDetails.accessKeyword">
+                            <a style="color: white;" href="#" data-toggle="modal" data-target="#uploadImage" data-placement="top" title=""
+                                data-original-title="Upload Image">
+                                <i class="icon-upload"></i> &nbsp; Upload Image
+                            </a>
+                </div>
+            </div>
+
+        </div>
+        <!-- Page header end -->
+
+        
+
+        <!-- Content wrapper start -->
+        <div class="content-wrapper" >
+
+            <!-- Row start -->
+            <div class="hover-gallery">
+                <div class="row gutters">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12" *ngFor="let projImage of imageGallery">
+                        <div class=" img-adjust">
+                            <!-- <div class=" img-adjust" (click)="show(projImage)> -->
+                            <figure class="effect-3">
+                                <!-- <img src="assets/img/img7.jpg" class="img-fluid" alt="Wafi Dashboard"> -->
+                                <img src="{{endpoint}}/docs/{{projImage.projectId}}/{{projImage.original_file_name}}"
+                                    class="img-fluid" alt="Project image" style="height: 200px; width: 100%;" >
+                                <figcaption>
+                                    <div>
+                                        <!-- <h2>Project image</h2> -->
+                                        <h4>{{projImage.image_caption}}</h4>
+                                        <p><span style="color:orange">Latitude: </span> {{projImage.GPSLatitude}}
+                                            {{projImage.GPSLatitudeRef}}</p>
+                                        <p><span style="color:orange">Longitude: </span> {{projImage.GPSLongitude}}
+                                            {{projImage.GPSLongitudeRef}}</p>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                    <figure class="effect-3">
+                                        <img src="assets/img/img7.jpg" class="img-fluid" alt="Wafi Dashboard">
+                                        <figcaption>
+                                            <div>
+                                                <h2>Project Image  3</h2>
+                                                <p>RTL Admin Template Design</p>
+                                            </div>
+                                            <a href="#">View more</a>
+                                        </figcaption>			
+                                    </figure>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                    <figure class="effect-3">
+                                        <img src="assets/img/img12.jpg" class="img-fluid" alt="Wafi Dashboard">
+                                        <figcaption>
+                                            <div>
+                                                <h2>Project Image  3</h2>
+                                                <p>Nice Admin Template Design</p>
+                                            </div>
+                                            <a href="#">View more</a>
+                                        </figcaption>			
+                                    </figure>
+                                </div> -->
+                </div>
+            </div>
+            <!-- Row end -->
+
+        </div>
+        <!-- Content wrapper end -->
+
+    </div>
+    <!-- ************************* Main container end ************************** -->
+
+    <div class="modal fade" id="uploadImage" tabindex="-1" role="dialog" aria-labelledby="uploadImage"
+        aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addNewTaskLabel">Upload new image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form name="uploadForm" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <label for="caption">Caption</label>
+                                    <input type="text" class="form-control" name="caption"
+                                        [(ngModel)]="uploadImageObject.caption" placeholder="Image caption">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <label for="file">Document</label>
+                                <div class="form-group">
+                                    <label class="custom-file-label" for="file">{{chooseFile}}</label>
+                                    <input type="file" accept="image/png, image/gif, image/jpg, image/jpeg" class="custom-file-input"
+                                        aria-describedby="inputGroupFileAddon01" name="file" id="file"
+                                        (change)="onFileSelect($event)">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer custom">
+                        <div class="left-side">
+                            <button type="button" class="btn btn-link danger btn-block"
+                                data-dismiss="modal">Cancel</button>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="right-side">
+                            <button type="button" (click)="handleUploadImage()"
+                                class="btn btn-link success btn-block">Upload</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Large Modal -->
+
+    
+        <!-- <div [style.display]="showModal ? 'block' : 'none'" class="modal w-50 modal-align center" id="imagemodal" tabindex="-1"
+            role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background: none !important; width: 100vw !important">
+            <div class=" modal-full" style="background: none !important;">
+                <div class="modal-content modal-content1" style="background: none !important;">
+                    <div class=" align-self-center" data-dismiss="modal" (click)="hide()"
+                        style="background-color: none !important">
+                        <button type="button" class="btn btn-danger" style="margin-top: 12px;">Close</button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="{{imgurl}}" id="imagepreview" style="width: 100%; height: 100%;">
+                    </div>
+                </div>
+            </div>
+        </div> -->

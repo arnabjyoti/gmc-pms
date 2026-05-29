@@ -1,0 +1,206 @@
+<!-- Loading starts -->
+<div id="loading-wrapper" *ngIf="isLoading">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<!-- Loading ends -->
+
+<div class="container-fluid p-0" *ngIf="!isLoading">
+    <app-project-navbar projectId='{{projectId}}' activePage='assembly'></app-project-navbar>
+    <div class="main-container">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-6 text-center">
+                    <p class="fontmobile" style="text-align: left;" title="{{projectDetails.name}}">
+                        {{projectDetails.name}}</p>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-6 text-center" style="padding-right:0px;">
+                    <div>
+                        <div>
+                            <a style="color: white; cursor: pointer;"
+                                data-placement="top" title="" data-original-title="Add Assembly" data-toggle="modal" data-target="#addAssembly">
+                                <i class="icon-add"></i>
+                                &nbsp;Add
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-wrapper scroll">
+            <div class="card" *ngFor="let assembly of assemblyData">
+                <div class="card-header font-weight-bold ">
+                    Question Raised By <span class="ml-5 text-primary">~~{{ assembly.name }}~~</span>
+                    <a class="float-right p-2 hand text-light" style="background-color: #1a538e" href="#" data-toggle="modal"
+                        data-target="#addReply" data-placement="top" (click)="getProjectId(assembly.id)"><i style="font-size: large"
+                            class="fas fa-plus-circle"></i> &nbsp; Reply</a>
+                </div>
+                <div class="card-body">
+                    <div>Q. {{ assembly.query }}?</div> <br /><br />
+                    <div>=> {{ assembly.answer }} </div>
+                </div>
+                <div class="card-footer">
+                    <div class="float-right">Created on - {{ assembly.date | date : 'MMMM dd yyyy' }} at
+                        {{ assembly.time | date : 'hh:mm:ss a'}}</div>
+                </div>
+            </div>
+            <!-- <div class="card">
+                <div class="card-header font-weight-bold ">
+                    Question Raised By <span class="ml-5 text-primary">~~Sudeep Dutta~~</span> 
+                </div>
+                <div class="card-body">
+                 <span>Q. What is the capital of India?</span> <br/><br/>
+                 <span>=> New Delhi</span>
+                </div>
+                <div class="card-footer">
+                    <div class="float-right">Created on - 30-09-2021  at  10:52 AM</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header font-weight-bold ">
+                    Question Raised By <span class="ml-5 text-primary">~~Sudeep Dutta~~</span> 
+                </div>
+                <div class="card-body">
+                 <span>Q. What is the capital of India?</span> <br/><br/>
+                 <span>=> New Delhi</span>
+                </div>
+                <div class="card-footer">
+                    <div class="float-right">Created on - 30-09-2021  at  10:52 AM</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header font-weight-bold ">
+                    Question Raised By <span class="ml-5 text-primary">~~Sudeep Dutta~~</span> 
+                </div>
+                <div class="card-body">
+                 <span class="px-5">Q. What is the capital of India?</span> <br/><br/>
+                 <span class="px-5">=> New Delhi</span>
+                </div>
+                <div class="card-footer">
+                    <div class="float-right">Created on - 30-09-2021  at  10:52 AM</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header font-weight-bold ">
+                    Question Raised By <span class="ml-5 text-primary">~~Sudeep Dutta~~</span> 
+                </div>
+                <div class="card-body">
+                 <span class="px-5">Q. What is the capital of India?</span> <br/><br/>
+                 <span class="px-5">=> New Delhi</span>
+                </div>
+                <div class="card-footer">
+                    <div class="float-right">Created on - 30-09-2021  at  10:52 AM</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header font-weight-bold ">
+                    Question Raised By <span class="ml-5 text-primary">~~Sudeep Dutta~~</span> 
+                </div>
+                <div class="card-body">
+                 <span>Q. What is the capital of India?</span> <br/><br/>
+                 <span>=> New Delhi</span>
+                </div>
+                <div class="card-footer">
+                    <div class="float-right">Created on - 30-09-2021  at  10:52 AM</div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+<!-- Add Assembly Questions Modal -->
+<div class="modal fade" id="addAssembly" tabindex="-1" role="dialog" aria-labelledby="addNewTaskLabel"
+    aria-hidden="true" #addAssembly>
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addAssembly">Assembly Questions</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row gutters">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="name">Enter Your Name</label>
+                            <input type="text" name="name" id="name" class="form-control" value="{{ assembly.name }}" disabled>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="query">Enter Your Query</label>
+                            <input type="text" name="query" id="query" class="form-control"
+                                [(ngModel)]="assembly.query">
+                        </div>
+                    </div>
+                    <!-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group"> 
+                            <label for="answer">Answer</label>
+                            <textarea class="form-control" id="answer" [(ngModel)]="assembly.answer"></textarea>
+                        </div>
+                    </div> -->
+                    <!-- <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <div class="form-group">
+                            <label for="date">Enter Date</label>
+                            <input style="text-align: center" type="date" name="date" id="date" class="form-control"
+                                [(ngModel)]="assembly.date">
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <div class="form-group">
+                            <label for="date">Enter Time</label>
+                            <input style="text-align: center" type="time" name="time" id="time" class="form-control"
+                                [(ngModel)]="assembly.time">
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="modal-footer custom">
+                <div class="left-side">
+                    <button type="button" class="btn btn-link danger btn-block" data-dismiss="modal">Cancel</button>
+                </div>
+                <div class="divider"></div>
+                <div class="right-side">
+                    <button type="button" class="btn btn-link success btn-block" (click)="saveAssembly()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Reply Questions Modal -->
+
+<div class="modal fade" id="addReply" tabindex="-1" role="dialog" aria-labelledby="addNewTaskLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addAssembly">Reply Assembly Question</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row gutters">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label for="answer">Answer</label>
+                            <textarea class="form-control" id="answer" [(ngModel)]="assembly.answer"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer custom">
+                <div class="left-side">
+                    <button type="button" class="btn btn-link danger btn-block" data-dismiss="modal">Cancel</button>
+                </div>
+                <div class="divider"></div>
+                <div class="right-side">
+                    <button id="link-button" type="button" class="btn btn-link success btn-block"
+                        (click)="addAssemblyQReply()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

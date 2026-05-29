@@ -1,0 +1,43 @@
+<!-- Loading starts -->
+
+<!-- Loading ends -->
+
+
+<!-- Container fluid start -->
+<div class="container-fluid">
+
+    <app-project-navbar projectId='{{projectId}}' activePage='physicalProgress'></app-project-navbar>
+
+    <!-- ************************* Main container start ************************** -->
+    <div class="main-container">
+
+        <!-- Page header start -->
+        <div class="page-header ">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-6 text-center">
+                    <p class="fontmobile" style="text-align: left;">{{projectDetails.name}}</p>
+                </div>
+            </div>
+            
+        </div>
+        <div id="loading-wrapper" *ngIf="isLoading">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Page header end -->
+
+        <!-- Content wrapper start -->
+        <div class="content-wrapper" *ngIf="!isLoading">
+
+            <div mk-morris-js [options]="chartAreaOptions" [data]="chartAreaData" type="Bar" style="height: 200px; width: 100%;"></div>
+            <BR>
+            <ng2-smart-table [settings]="progressTable_Config" [source]="progressTableSource" (createConfirm)="addProgressRecord($event)" (deleteConfirm)="onDeleteConfirm($event)">
+            </ng2-smart-table>
+        </div>
+        <!-- Content wrapper end -->
+
+    </div>
+    <!-- ************************* Main container end ************************** -->
+
+</div>

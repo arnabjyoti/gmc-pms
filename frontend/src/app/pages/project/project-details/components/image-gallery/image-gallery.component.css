@@ -1,0 +1,81 @@
+@media (max-width: 411px)
+{
+  .fontmobile {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: auto;
+  clear: both;
+  }
+  
+  .fontmobile:hover{
+    overflow: visible;
+  }
+
+}
+@media (max-width: 320px)
+{
+  .fontmobile {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: auto;
+  clear: both;
+  }
+  
+  .fontmobile:hover{
+    overflow: visible;
+  }
+
+}
+@media (max-width: 414px)
+{
+  .fontmobile {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: auto;
+  clear: both;
+  }
+  
+  .fontmobile:hover{
+    overflow: visible;
+  }
+
+}
+@media (max-width: 540px)
+{
+  .fontmobile {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: auto;
+  clear: both;
+  }
+  
+  .fontmobile:hover{
+    overflow: visible;
+  }
+
+}
+@media (max-width: 280px)
+{
+  .fontmobile {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: auto;
+  clear: both;
+  }
+  
+  .fontmobile:hover{
+    overflow: visible;
+  }
+
+}
+.center {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}

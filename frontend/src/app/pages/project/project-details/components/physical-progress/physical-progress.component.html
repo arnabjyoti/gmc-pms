@@ -1,0 +1,141 @@
+<div id="print-section" class="landscape">
+    <!-- Loading starts -->
+    <div id="loading-wrapper" *ngIf="isLoading">
+        <!-- <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span> 
+        </div> -->
+        <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+    <!-- Loading ends -->
+
+    <!-- Container fluid start -->
+    <div class="container-fluid p-0" *ngIf="!isLoading">
+        <app-project-navbar projectId='{{projectId}}' activePage='physicalProgress'></app-project-navbar>
+
+        <div class="main-container">
+            <!-- Page header start -->
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-6 text-center">
+                        <p class="fontmobile" style="text-align: left;" title="{{projectDetails.name}}">
+                            {{projectDetails.name}}</p>
+                    </div>
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-6 text-center" style="padding-right:0px;"  *ngIf="permission.projectUpdationPrivilage">
+                                <a style="color: white;" href="#" data-toggle="modal" data-target="#editPhysicalProgress" data-placement="top"
+                                    title="" data-original-title="Edit Funds Recieved">
+                                    <i class="icon-pencil"></i>
+                                    &nbsp;Edit
+                                </a>
+                    </div>
+                </div>
+            </div>
+            <div id="loading-wrapper" *ngIf="isLoading">
+                <!-- <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div> -->
+                <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </div>
+            <!-- Page header end -->
+
+            <!-- Content wrapper start -->
+            <div class="content-wrapper">
+                <!-- <a (click)="print()" class="important" data-toggle="tooltip" data-placement="top"
+                    title="Print progress">
+                    <i class="icon-print"></i>
+                </a> -->
+                <!-- <button id="printBtn" [useExistingCss]="true" printSectionId="print-section" ngxPrint>print</button> -->
+                <div mk-morris-js [options]="chartAreaOptions" [data]="chartAreaData" type="Bar"
+                    style="height: 300px; width: 100%;"></div>
+                <BR>
+                <br>
+                <!-- <div *ngIf="!progressEmpty">
+                    <strong>Last Updated Date:
+                    </strong><span>{{progressLastUpdatedAt}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <strong>Last Updated Time: </strong><span>{{progressLastUpdatedTime}}</span>
+                </div>
+
+                <div style="text-align: center;">
+                    <div *ngFor="let progress of progressShow">
+                        <p><strong>{{progress.name}}</strong>:&nbsp;&nbsp;{{progress.percent}}&nbsp;%</p>
+                    </div>
+                    <p><strong>Overall</strong>:&nbsp;&nbsp;{{overAllProgress}}&nbsp;%</p>
+                </div> -->
+
+                <table class="table" *ngIf="!progressEmpty">
+                    <thead>
+                        <tr>
+                            <th scope="col">Steps</th>
+                            <th scope="col">Progress</th>
+                            <th scope="col">Overall</th>
+                            <!-- <th scope="col">Date</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let s of projectProgress;">
+                            <td>{{s.step}}</td>
+                            <td>{{s.progress}}%</td>
+                            <td>{{s.total_progress}}%</td>
+                            <!-- <td>{{s.updatedAt | date:"dd/MM/yy"}}</td> -->
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+            <!-- Content wrapper end -->
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="editPhysicalProgress" tabindex="-1" role="dialog" aria-labelledby="Physical Progress"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addNewTaskLabel">Edit Physical Progress</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row gutters">
+                        <div class="col-12" *ngFor="let projectStep of projectSteps; let i=index">
+                            <div class="form-group">
+                                <label>{{projectStep.steps}}</label>
+                                <div>
+                                    <input class="inputBox" type="text" id="step{{projectStep.steps}}"
+                                        placeholder="{{projectStep.steps}}" [(ngModel)]="step[projectStep.steps]"
+                                        maxlength="3" (input)="check(projectStep.steps, $event.target.value)"
+                                        onkeydown="javascript: return event.keyCode === 8 || event.keyCode === 46 || event.target.value.length > 3 ? true : !isNaN(Number(event.key))">
+                                    <span>
+                                        <strong>
+                                            %
+                                        </strong>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="errorContainer" *ngIf="largerConsecutiveNumber">
+                        <span style="color: white;">Successive steps cannot be bigger than previous steps</span>
+                    </div>
+                    <div class="errorContainer" *ngIf="greaterThanHundred">
+                        <span style="color: white;">Percentage cannot be greater than 100</span>
+                    </div>
+                </div>
+                <div class="modal-footer custom">
+                    <div class="left-side">
+                        <button type="button" class="btn btn-link danger btn-block" data-dismiss="modal">Cancel</button>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="right-side">
+                        <button type="button" (click)="updatePhysicalProgress()" [disabled]="false"
+                            class="btn btn-link success btn-block">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

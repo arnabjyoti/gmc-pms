@@ -1,0 +1,87 @@
+<!-- Navigation start -->
+
+<!-- <li class="nav-item dropdown" *ngIf="permission.projectUpdationPrivilage || permission.svDis">
+    <a class="nav-link" [ngClass]="page.measurementBook? 'active-page': ''"
+        routerLink="/measurement-book/{{projectId}}">
+        <i class="icon-book nav-icon"></i>
+        Measurement Book
+    </a>
+</li>
+<li class="nav-item dropdown" *ngIf="permission.addNote || permission.svDis">
+                <a class="nav-link" [ngClass]="page.costDisbursement? 'active-page': ''"
+                    routerLink="/cost-disbursement/{{projectId}}">
+                    <i class="icon-slack nav-icon"></i>
+                    Fund Disbursement
+                </a>
+            </li>
+<li class="nav-item dropdown">
+                <a class="nav-link" [ngClass]="page.physicalProgress? 'active-page': ''"
+                    routerLink="/physical-progress/{{projectId}}">
+                    <i class="icon-percent nav-icon"></i>
+                    Physical Progress
+                </a>
+            </li> -->
+<nav class="navbar navbar-expand-lg custom-navbar">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#WafiAdminNavbar"
+        aria-controls="WafiAdminNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">
+            <i></i>
+            <i></i>
+            <i></i>
+        </span>
+    </button>
+    <div class="collapse navbar-collapse" id="WafiAdminNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link" [ngClass]="page.projectDetails? 'active-page': ''"
+                    routerLink="/project-details/{{projectId}}">
+                    <i class="icon-devices_other nav-icon"></i>
+                    Project Details
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link" [ngClass]="page.fundsReceived? 'active-page': ''"
+                    routerLink="/funds-received/{{projectId}}">
+                    <i class="icon-business_center nav-icon"></i>
+                    Fund Received
+                </a>
+            </li>
+            
+            
+            <li class="nav-item dropdown">
+                <a class="nav-link" [ngClass]="page.docGallery? 'active-page': ''"
+                    routerLink="/project-documents/{{projectId}}">
+                    <i class="icon-file-text nav-icon"></i>
+                    DPR & Documents Repository
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link" [ngClass]="page.imageGallery? 'active-page': ''"
+                    routerLink="/image-gallery/{{projectId}}">
+                    <i class="icon-image nav-icon"></i>
+                    Image Gallery
+                </a>
+            </li>
+            
+            <li class="nav-item dropdown" *ngIf="permission.addNote || permission.svDis">
+                <a class="nav-link" [ngClass]="page.addNote? 'active-page': ''" routerLink="/add-note/{{projectId}}">
+                    <i class="icon-note nav-icon"></i>
+                    Digital Notes
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link" [ngClass]="page.feedback? 'active-page': ''" routerLink="/feedback/{{projectId}}">
+                    <i class="icon-note nav-icon"></i>
+                    Project Feedback
+                </a>
+            </li>
+            <!-- <li class="nav-item dropdown">
+                <a class="nav-link" [ngClass]="page.assembly? 'active-page': ''" routerLink="/assembly/{{projectId}}">
+                    <i class="icon-users nav-icon"></i>
+                    Assembly Questions
+                </a>
+            </li> -->
+        </ul>
+    </div>
+</nav>
+<!-- Navigation end --> 

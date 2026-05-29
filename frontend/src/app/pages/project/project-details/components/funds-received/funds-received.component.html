@@ -1,0 +1,444 @@
+<!-- Loading starts -->
+<div id="loading-wrapper" *ngIf="isLoading">
+    <!-- <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div> -->
+    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+<!-- Loading ends -->
+
+
+<!-- Container fluid start -->
+<div class="container-fluid p-0" *ngIf="!isLoading"> <app-project-navbar projectId='{{projectId}}' activePage='fundsReceived'></app-project-navbar>
+
+    <!-- ************************* Main container start ************* ************* -->
+    <div class="main-container">
+        <!-- Page header start -->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-xl-10 col-lg-10 col-md-7 col-sm-6 col-6 text-center">
+                    <p class="fontmobile" style="text-align: left;" title="{{projectDetails.name}}">{{projectDetails.name}}</p>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-5 col-sm-6 col-6 text-center" style="padding-right:0px;" *ngIf="user.accessKeyword == projectDetails.accessKeyword">
+                    <a style="color: white;" href="#" data-toggle="modal" data-target="#editFundsReceived" data-placement="top" title="" data-original-title="Edit Funds Recieved">
+                        <i class="icon-pencil"></i>
+                        &nbsp;Edit
+                    </a>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <!-- Page header end -->
+        
+        <!-- Content wrapper start -->
+        <div class="content-wrapper" >
+            <!-- Row start -->
+            <div class="row gutters">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="card" style="min-height: 150px;">
+                        <div class="card-header">
+                            <div class="card-title">Fund Details</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row py-3">
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 pt-4">
+                                    <strong>Tender amount : </strong> {{fund?.tender_amount | currency:'INR': 'symbol': '1.2-2': 'en-IN'}}
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 pt-4">
+                                    <strong>Estimated cost : </strong> {{fund?.initial_amount | currency:'INR': 'symbol': '1.2-2': 'en-IN'}}
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 pt-4">
+                                    <strong>Project cost : </strong> {{fund?.project_cost | currency:'INR': 'symbol': '1.2-2': 'en-IN'}}
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 pt-4">
+                                    <strong>GOI fund : </strong> {{fund?.goi_fund | currency:'INR': 'symbol': '1.2-2': 'en-IN'}}
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 pt-4">
+                                    <strong>State share : </strong> {{fund?.ss | currency:'INR': 'symbol': '1.2-2': 'en-IN'}}
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 pt-4">
+                                    <strong>GOI fund sanctioned : </strong> {{fund?.goi_fund_sanctioned | currency:'INR': 'symbol': '1.2-2': 'en-IN'}}
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 pt-4">
+                                    <strong>GOI fund recieved : </strong> {{fund?.goi_fund_rcvd | currency:'INR': 'symbol': '1.2-2': 'en-IN'}}
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 pt-4">
+                                    <strong>Balanced GOI fund to be recieved : </strong> {{fund?.blnc_goi_fund | currency:'INR': 'symbol': '1.2-2': 'en-IN'}}
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 pt-4">
+                                    <strong>Total state share recieved : </strong> {{fund?.total_ss | currency:'INR': 'symbol': '1.2-2': 'en-IN'}}
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 pt-4">
+                                    <strong>State share to be recieved : </strong> {{fund?.ss_rcvd | currency:'INR': 'symbol': '1.2-2': 'en-IN'}}
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 pt-4">
+                                    <strong>Administrative approval amount : </strong> {{fund?.aa_amount | currency:'INR': 'symbol': '1.2-2': 'en-IN'}}
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 pt-4">
+                                    <strong>Administrative Approval : </strong> {{fund?.aa_status}}
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 pt-4">
+                                    <strong>Technical Approval : </strong> {{fund?.technical_approval}}
+                                </div>
+                                </div>
+                                <div class="row border-top pt-3"  *ngIf="projectDetails?.scheme == 'State Government Funded Scheme'">
+                                <div class="col-12 cs-style">
+                                    Consultancy Service
+                                </div>
+                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-12 pt-3">
+                                    <strong>Tender amount : </strong> {{fund?.tender_amount_cs | currency:'INR': 'symbol': '1.2-2': 'en-IN'}}
+                                    <br>
+                                    <small>(Consultancy Service)</small>
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Row end -->
+            <!-- Row start -->
+            <div class="row gutters">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="card" style="min-height: 170px;">
+                        <div class="card-header">
+                            <div class="card-title">Fixation of Ceiling</div>
+                        </div>
+                        <div class="card-body">
+                          <div class="row gutters">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 p-3">
+                                <label for="aaNumber" class="label"><b>Fixation of Ceiling Number:</b> {{fund.focn}}</label>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 p-3">
+                                <label for="aaAmount" class="label"><b>Fixation of Ceiling Date:</b> {{fund.focd | date : 'dd/MM/yyyy'}}</label>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 p-3">
+                                <label for="aaDate" class="label"><b>Fixation of Ceiling Amount:</b> {{fund.foca | currency:'INR': 'symbol': '1.2-2': 'en-IN'}}</label>
+                            </div>
+                        </div>
+                        <div class="row border-top pt-3"  *ngIf="projectDetails.scheme == 'State Government Funded Scheme'">
+                            <div class="col-12 cs-style">
+                                Consultancy Service
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 p-3">
+                                <label for="aaNumber" class="label"><b>Fixation of Ceiling Number:</b> {{fund.focn_cs}}</label>
+                                <br>
+                                <small>(Consultancy Service)</small>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 p-3">
+                                <label for="aaAmount" class="label"><b>Fixation of Ceiling Date:</b> {{fund.focd_cs | date : 'dd/MM/yyyy'}}</label>
+                                <br>
+                                <small>(Consultancy Service)</small>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 p-3">
+                                <label for="aaDate" class="label"><b>Fixation of Ceiling Amount:</b> {{fund.foca_cs | currency:'INR': 'symbol': '1.2-2': 'en-IN'}}</label>
+                                <br>
+                                <small>(Consultancy Service)</small>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="card" style="min-height: 170px;">
+                        <div class="card-header">
+                            <div class="card-title">Financial Sanction</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row py-2">
+                               <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 p-3">
+                                   <label for="aaNumber" class="label"><b>Financial Sanction Number:</b> {{fund.fsn}}</label>
+                               </div>
+                               <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 p-3">
+                                   <label for="aaAmount" class="label"><b>Financial Sanction Date:</b> {{fund.fsd | date : 'dd/MM/yyyy'}}</label>
+                               </div>
+                               <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 p-3">
+                                   <label for="aaDate" class="label"><b>Financial Sanction Amount:</b> {{fund.fsa | currency:'INR': 'symbol': '1.2-2': 'en-IN'}}</label>
+                               </div>
+                            </div>
+
+                            <div class="row border-top pt-3"  *ngIf="projectDetails.scheme == 'State Government Funded Scheme'">
+                                <div class="col-12 cs-style">
+                                    Consultancy Service
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 p-3">
+                                    <label for="aaNumber" class="label"><b>Financial Sanction Number:</b> {{fund.fsn_cs}}</label>
+                                    <br>
+                                <small>(Consultancy Service)</small>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 p-3">
+                                    <label for="aaAmount" class="label"><b>Financial Sanction Date:</b> {{fund.fsd_cs | date : 'dd/MM/yyyy'}}</label>
+                                    <br>
+                                <small>(Consultancy Service)</small>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 p-3">
+                                    <label for="aaDate" class="label"><b>Financial Sanction Amount:</b> {{fund.fsa_cs | currency:'INR': 'symbol': '1.2-2': 'en-IN'}}</label>
+                                    <br>
+                                <small>(Consultancy Service)</small>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Row end -->
+        </div>
+        <!-- Content wrapper end -->
+
+    </div>
+    <!-- ************************* Main container end ************************** -->
+
+    <!-- Upload file modal -->
+    <div class="modal fade" id="editFundsReceived" tabindex="-1" role="dialog" aria-labelledby="Upload Document" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addNewTaskLabel">Edit Fund Received</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row gutters">
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="TenderAmount">Tender amount</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Tender amount" [(ngModel)]="fund.tender_amount">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="EstimatedCost">Estimated cost</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Estimated cost" [(ngModel)]="fund.initial_amount">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="ProjectCost">Project cost</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Project cost" [(ngModel)]="fund.project_cost">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="GOIFund">GOI fund</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="GOI fund" [(ngModel)]="fund.goi_fund">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="StateShare">State share</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="State share" [(ngModel)]="fund.ss">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="GOIFundSanctioned">GOI fund sanctioned</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="GOI fund sanctioned" [(ngModel)]="fund.goi_fund_sanctioned">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="GOIFundRecieved">GOI fund recieved</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="GOI fund recieved" [(ngModel)]="fund.goi_fund_rcvd">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="EstimatedCost">Balanced GOI fund to be recieved</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Balanced GOI fund to be recieved" [(ngModel)]="fund.blnc_goi_fund">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="EstimatedCost">Total state share recieved</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Total state share recieved" [(ngModel)]="fund.total_ss">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="EstimatedCost">State share to be recieved</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="State share to be recieved" [(ngModel)]="fund.ss_rcvd">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="EstimatedCost">Administrative approval amount </label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Administrative approval amount " [(ngModel)]="fund.aa_amount">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="AdministrativeApprovel">Administrative Approval</label>
+                                <div>
+                                    <input type="text" class="form-control" placeholder="Administrative Approval" [(ngModel)]="fund.aa_status"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
+                            <div class="form-group">
+                                <label for="TechnicalApprovel">Technical Approval</label>
+                                <div>
+                                    <input type="text" class="form-control" placeholder="Technical Approval" [(ngModel)]="fund.technical_approval"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row gutters">
+                        <div class="col-12 cs-style pb-2">
+                            Financial Sanction
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                            <div class="form-group">
+                                <label for="fsn">Financial Sanction Number</label>
+                                <div>
+                                    <input type="text" class="form-control" placeholder="Financial Sanction Number" [(ngModel)]="fund.fsn">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                            <div class="form-group">
+                                <label for="fsd">Financial Sanction Date</label>
+                                <div>
+                                    <input type="date" class="form-control" placeholder="Financial Sanction Date" [ngModel]="fund.fsd | date:'yyyy-MM-dd'" (input)="parseFsd($event.target.value)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                            <div class="form-group">
+                                <label for="fsa">Financial Sanction Amount</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Financial Sanction Amount" [(ngModel)]="fund.fsa">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row gutters">
+                        <div class="col-12 cs-style pb-2">
+                            Fixation of Ceiling
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                            <div class="form-group">
+                                <label for="focn">Fixation of Ceiling Number</label>
+                                <div>
+                                    <input type="text" class="form-control" placeholder="Fixation of Ceiling Number" [(ngModel)]="fund.focn">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                            <div class="form-group">
+                                <label for="focd">Fixation of Ceiling Date</label>
+                                <div>
+                                    <input type="date" class="form-control" placeholder="Fixation of Ceiling Date" [ngModel]="fund.focd | date:'yyyy-MM-dd'" (input)="parseFocd($event.target.value)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                            <div class="form-group">
+                                <label for="foca">Fixation of Ceiling Amount</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Fixation of Ceiling Amount" [(ngModel)]="fund.foca">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row gutters border-top pt-2"  *ngIf="projectDetails.scheme == 'State Government Funded Scheme'">
+                        <div class="col-12 cs-style pb-2">
+                            Consultancy Service
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                            <div class="form-group">
+                                <label for="fsn">Financial Sanction Number <small>(Consultancy Service)</small></label>
+                                <div>
+                                    <input type="text" class="form-control" placeholder="Financial Sanction Number" [(ngModel)]="fund.fsn_cs">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                            <div class="form-group">
+                                <label for="fsd">Financial Sanction Date <small>(Consultancy Service)</small></label>
+                                <div>
+                                    <input type="date" class="form-control" placeholder="Financial Sanction Date" [ngModel]="fund.fsd_cs | date:'yyyy-MM-dd'" (input)="parseFsdCs($event.target.value)"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                            <div class="form-group">
+                                <label for="fsa">Financial Sanction Amount <small>(Consultancy Service)</small></label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Financial Sanction Amount" [(ngModel)]="fund.fsa_cs">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="row gutters" *ngIf="projectDetails.scheme == 'State Government Funded Scheme'">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                        <div class="form-group">
+                            <label for="focn">Fixation of Ceiling Number <small>(Consultancy Service)</small></label>
+                            <div>
+                                <input type="text" class="form-control" placeholder="Fixation of Ceiling Number" [(ngModel)]="fund.focn_cs">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                        <div class="form-group">
+                            <label for="focd">Fixation of Ceiling Date <small>(Consultancy Service)</small></label>
+                            <div>
+                                <input type="date" class="form-control" placeholder="Fixation of Ceiling Date" [ngModel]="fund.focd_cs | date:'yyyy-MM-dd'" (input)="parseFocdCs($event.target.value)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                        <div class="form-group">
+                            <label for="foca">Fixation of Ceiling Amount <small>(Consultancy Service)</small></label>
+                            <div>
+                                <input type="number" class="form-control" placeholder="Fixation of Ceiling Amount" [(ngModel)]="fund.foca_cs">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12">
+                        <div class="form-group">
+                            <label for="foca">Tender Amount <small>(Consultancy Service)</small></label>
+                            <div>
+                                <input type="number" class="form-control" placeholder="Tender Amount" [(ngModel)]="fund.tender_amount_cs">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="modal-footer custom">
+                    <div class="left-side">
+                        <button type="button" class="btn btn-link danger btn-block" data-dismiss="modal">Cancel</button>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="right-side">
+                        <button type="button" (click)="updateFundReceived()" [disabled]="false" class="btn btn-link success btn-block">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end of upload file -->
+</div>

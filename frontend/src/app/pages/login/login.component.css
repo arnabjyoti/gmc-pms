@@ -1,0 +1,75 @@
+/* .bg {
+    background-image: url("../../../assets/login-page-bg5.jpg");
+    min-height: 100vh;
+    background-position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-width: 100%;
+} */
+.root {
+    height: 80vh;
+    /* width: 103vw; */
+}
+
+@media only screen and (min-width: 1200px) {
+    .bg {
+        /* background-image: url("../../../assets/img/hoqnai.jpg"); */
+        /* background-image: url("/assets/finalImage.jpeg") !important; */
+        background-image: url("/assets/gmc.png") !important;
+        background-position: absolute;
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-width: 100%;
+        background-blend-mode: darken;
+        height: 100vh;
+        background-attachment: fixed;
+        background-position: center;
+        min-height: 1000px;
+
+        /* width: 90vw; */
+    }
+}
+.count-bg {
+    background-color: #ffffff8c;
+}
+.bg-rd {
+    color: #bd1b1b;
+}
+.bg-blu {
+    color: #1b5abd;
+}
+.bg-grn {
+    color: #009709;
+}
+.bg {
+    background-image: url("/assets/login-bg.jpg");
+    background-position: absolute;
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-width: 100%;
+        background-blend-mode: darken;
+        background-attachment: fixed;
+        background-position: center;
+        min-height: 1200px;
+}
+
+.bio-image-image {
+    border-style: double;
+    border-color: #f2f4f9;
+    border-width: 5px;
+}
+
+@media (max-width: 767px) {
+    .notdisplaymob {
+        display: none;
+    }
+}
+.footer-login {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #fffefe80;
+    color: black;
+    text-align: right;
+ }

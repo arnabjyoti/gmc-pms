@@ -1,0 +1,319 @@
+<div class="modal-header">
+    <!-- <h5 class="modal-title" id="addNewTaskLabel">Add New Project</h5> -->
+    <h3 class="modal-title" id="addNewTaskLabel">Add New Project</h3>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <h3 class="text-danger" *ngIf="userRole.role === 'su'">Currently super admin project creation disabled</h3>
+    <div class="row gutters">
+        <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-12">
+            <div class="form-group">
+                <!-- <label for="projectTitle">Project Title</label> -->
+                <label for="projectTitle">
+                    <h5>Project Title</h5>
+                </label>
+                <input type="text" class="form-control" placeholder="Project title" [(ngModel)]="projectDetails.name">
+            </div>
+        </div>
+        <!-- </div>
+    <div class="row gutters"> -->
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+            <div class="form-group">
+                <!-- <label for="sourceOfFund">Source of Fund</label> -->
+                <label for="sourceOfFund">
+                    <h5>Source of Fund</h5>
+                </label>
+                <div class="">
+                    <select class="form-control" id="sourceOfFund" [(ngModel)]="projectDetails.scheme">
+                        <option>
+                            Select Source of Fund
+                        </option>
+                        <option value="Centrally Sponsored Scheme">
+                            Centrally Sponsored Scheme
+                        </option>
+                        <option value="State Government Funded Scheme">
+                            State Government Funded Scheme
+                        </option>
+                        <option value="Centre-State Funded Scheme">
+                            Centre-State Funded Scheme
+                        </option>
+                        <option value="Own Funded Scheme">
+                            Own Funded Scheme
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row gutters">
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+            <div class="form-group">
+                <!-- <label for="taskTitle">Contractor</label> -->
+                <label for="taskTitle">
+                    <h5>District Name</h5>
+                </label>
+                <div class="">
+                    <select class="form-control" id="sourceOfFund" [(ngModel)]="projectDetails.district">
+                        <option>
+                            Select District
+                        </option>
+                        <option value="Baksa">Baksa</option>
+                        <option value="Barpeta">Barpeta</option>
+                        <option value="Bongaigaon">Bongaigaon</option>
+                        <option value="Cachar">Cachar</option>
+                        <option value="Charaideo">Charaideo</option>
+                        <option value="Chirang">Chirang</option>
+                        <option value="Darrang">Darrang</option>
+                        <option value="Dhemaji">Dhemaji</option>
+                        <option value="Dhubri">Dhubri</option>
+                        <option value="Dibrugarh">Dibrugarh</option>
+                        <option value="Dima Hasao">Dima Hasao</option>
+                        <option value="Goalpara">Goalpara</option>
+                        <option value="Golaghat">Golaghat</option>
+                        <option value="Hailakandi">Hailakandi</option>
+                        <option value="Jorhat">Jorhat</option>
+                        <option value="Kamrup Metropolitan">Kamrup Metropolitan</option>
+                        <option value="Kamrup">Kamrup</option>
+                        <option value="Karbi Anglong">Karbi Anglong</option>
+                        <option value="Karimganj">Karimganj</option>
+                        <option value="Kokrajhar">Kokrajhar</option>
+                        <option value="Lakhimpur">Lakhimpur</option>
+                        <option value="Majuli">Majuli</option>
+                        <option value="Morigaon">Morigaon</option>
+                        <option value="Nagaon">Nagaon</option>
+                        <option value="Nalbari">Nalbari</option>
+                        <option value="Sivasagar">Sivasagar</option>
+                        <option value="Sonitpur">Sonitpur</option>
+                        <option value="South Salmara-Mankachar">South Salmara-Mankachar</option>
+                        <option value="Tinsukia">Tinsukia</option>
+                        <option value="Udalguri">Udalguri</option>
+                        <option value="West Karbi Anglong">West Karbi Anglong</option>
+                        <option value="Biswanath">Biswanath</option>
+                        <option value="Hojai">Hojai</option>
+                        <option value="Bajali">Bajali</option>
+                        <option value="Tamulpur">Tamulpur</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+            <div class="form-group">
+                <!-- <label for="taskTitle">Contractor</label> -->
+                <label for="taskTitle">
+                    <h5>Contractor Name</h5>
+                </label>
+                <input type="text" class="form-control" placeholder="Contractor Name"
+                    [(ngModel)]="projectDetails.contractor">
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+            <div class="form-group">
+                <label for="contractorPhone">
+                    <h5>Contractor Phone</h5>
+                </label>
+                <input type="number" class="form-control" placeholder="Contractor phone."
+                    [(ngModel)]="projectDetails.contractorPhone">
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+            <div class="form-group">
+                <!-- <label for="workOrderNo">Work order No.</label> -->
+                <label for="workOrderNo">
+                    <h5>Work order No.</h5>
+                </label>
+                <input type="text" class="form-control" placeholder="Work order No."
+                    [(ngModel)]="projectDetails.wo_number">
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+            <div class="form-group">
+                <!-- <label for="actualStartDate">Actual start date</label> -->
+                <label for="workOrderDate">
+                    <h5>Work order date</h5>
+                </label>
+                <div class="">
+                    <input type="date" name="" class="form-control" id="workOrderDate" placeholder="Work order date"
+                        [(ngModel)]="projectDetails.wo_date">
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+            <div class="form-group">
+                <!-- <label for="packageAmount">Package amount</label> -->
+                <label for="packageAmount">
+                    <h5>Work order amount</h5>
+                </label>
+                <div class="">
+                    <input type="number" name="" class="form-control" id="workOrderAmount"
+                        placeholder="Work order amount" [(ngModel)]="projectDetails.wo_amount">
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+            <div class="form-group">
+                <!-- <label for="actualStartDate">Actual start date</label> -->
+                <label for="actualStartDate">
+                    <h5>Actual start date</h5>
+                </label>
+                <div class="">
+                    <input type="date" name="" class="form-control" id="actualStartDate" placeholder="Actual start date"
+                        [(ngModel)]="projectDetails.actual_start">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+            <div class="form-group">
+                <!-- <label for="actualStartDate">Actual start date</label> -->
+                <label for="actualStartDate">
+                    <h5>Planned end date</h5>
+                </label>
+                <div class="">
+                    <input type="date" name="" class="form-control" id="actualEndDate" placeholder="Planned end date"
+                        [(ngModel)]="projectDetails.actual_end">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row gutters" *ngIf="projectDetails.scheme == 'State Government Funded Scheme'">
+
+        <div class="col-12 cs-style pb-2">
+            Consultancy Service
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+            <div class="form-group">
+                <!-- <label for="taskTitle">Contractor</label> -->
+                <label for="taskTitle">
+                    <h5>Contractor Name <small>(Consultancy Service)</small></h5>
+                </label>
+                <input type="text" class="form-control" placeholder="Contractor Name"
+                    [(ngModel)]="projectDetails.contractor_cs">
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+            <div class="form-group">
+                <label for="contractorPhone">
+                    <h5>Contractor Phone <small>(Consultancy Service)</small></h5>
+                </label>
+                <input type="number" class="form-control" placeholder="Contractor phone."
+                    [(ngModel)]="projectDetails.contractorPhoneCs">
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+            <div class="form-group">
+                <!-- <label for="workOrderNo">Work order No.</label> -->
+                <label for="workOrderNo">
+                    <h5>Work order No. <small>(Consultancy Service)</small></h5>
+                </label>
+                <input type="text" class="form-control" placeholder="Work order No."
+                    [(ngModel)]="projectDetails.wo_number_cs">
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+            <div class="form-group">
+                <!-- <label for="actualStartDate">Actual start date</label> -->
+                <label for="workOrderDate">
+                    <h5>Work order date <small>(Consultancy Service)</small></h5>
+                </label>
+                <div class="">
+                    <input type="date" name="" class="form-control" id="workOrderDate" placeholder="Work order date"
+                        [(ngModel)]="projectDetails.wo_date_cs">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+            <div class="form-group">
+                <label for="packageAmount">
+                    <h5>Work order amount <small>(Consultancy Service)</small></h5>
+                </label>
+                <div class="">
+                    <input type="number" name="" class="form-control" id="workOrderAmount"
+                        placeholder="Work order amount" [(ngModel)]="projectDetails.wo_amount_cs">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+            <div class="form-group">
+                <!-- <label for="actualStartDate">Actual start date</label> -->
+                <label for="actualStartDate">
+                    <h5>Actual start date <small>(Consultancy Service)</small></h5>
+                </label>
+                <div class="">
+                    <input type="date" name="" class="form-control" id="actualStartDate" placeholder="Actual start date"
+                        [(ngModel)]="projectDetails.actual_start_cs">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+            <div class="form-group">
+                <!-- <label for="actualStartDate">Actual start date</label> -->
+                <label for="actualStartDate">
+                    <h5>Planned end date <small>(Consultancy Service)</small></h5>
+                </label>
+                <div class="">
+                    <input type="date" name="" class="form-control" id="actualEndDate" placeholder="Planned end date"
+                        [(ngModel)]="projectDetails.actual_end_cs">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row gutters">
+
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="form-group">
+                <!-- <label for="description">Description</label> -->
+                <label for="description">
+                    <h5>Description</h5>
+                </label>
+                <textarea class="form-control" id="description" placeholder="Project description"
+                    [(ngModel)]="projectDetails.description">{{projectDetails.description}}</textarea>
+            </div>
+        </div>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="form-group">
+                <!-- <label for="projectType">Project type</label> -->
+                <label for="projectType">
+                    <h5>Project type</h5>
+                </label>
+                <div>
+                    <select class="form-control" name="projectType" [(ngModel)]="projectDetails.type">
+                        <!-- <option value="Select Project Type">Select Project Type</option> -->
+                        <option value="" disabled="disabled">- Select Project Type -</option>
+                        <option value="Construction">Construction</option>
+                        <option value="Land Development">Land Development</option>
+                        <option value="Industrial Shed">Industrial Shed</option>
+                        <option value="Road">Road</option>
+                        <option value="IT Hardware Work">IT Hardware Work</option>
+                        <option value="IT Software Work">IT Software Work</option>
+                        <option value="Assam Startup (Nest)">Assam Startup (Nest)</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="modal-footer custom"> -->
+<div class="modal-footer">
+    <div class="left-side">
+        <button type="button" id="modalClose" class="btn btn-outline-warning btn-submit-custom"
+            data-dismiss="modal">Cancel</button>
+    </div>
+    <div class="divider"></div>
+    <div class="right-side" *ngIf="userRole.role === 'user'">
+        <!-- <button type="button" (click)="saveProject()" [disabled]="isSaving" class="btn btn-link success btn-block">Save</button> -->
+        <button type="button" (click)="saveProject()" [disabled]="isSaving"
+            class="btn btn-lg btn-outline-success btn-submit-custom">
+            Submit
+            <!-- <span style="color:green;font-weight: bold;">Submit</span> -->
+        </button>
+    </div>
+</div>

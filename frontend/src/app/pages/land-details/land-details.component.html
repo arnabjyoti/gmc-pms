@@ -1,0 +1,297 @@
+<div class="container">
+    <div class="row">
+        <div class="col-auto mr-auto">
+            <h1>Land Details</h1>
+        </div>
+        <div class="col-auto p-2">
+            <button class="btn btn-success" data-toggle="modal" data-target="#addNewLand"><i class="icon-plus"></i> New Land Details</button>
+            
+        </div>
+        
+        <div class="col-12" *ngFor="let landDetails of allLandDetails">
+            <div class="card">
+                <h5 class="card-header card-bt">District: {{landDetails.district_name}}</h5>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-auto mr-auto">
+                            <p class="land-title"><b>Infrastructure Location: </b>{{landDetails.location_name}}</p>
+                        </div>
+                        <div class="col-auto">
+                            <button (click)="showLandUpdateModal(landDetails)" class="btn btn-warning" data-toggle="modal" data-target="#landUpdate"><i class="icon-edit"></i> Edit </button>     
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 p-2">
+                            <h5>Total Land Area in sq m: </h5>
+                            {{landDetails.total_land}} sq m
+                        </div>
+                        <div class="col-md-3 p-2">
+                            <h5>Allotable Land Area: </h5>
+                            {{landDetails.allotable_land}} sq m
+                        </div>
+                        <div class="col-md-3 p-2">
+                            <h5>Land Area allotted: </h5>
+                            {{landDetails.land_allot}} sq m
+                        </div>
+                        <div class="col-md-3 p-2">
+                            <h5>Vacant allotable land area: </h5>
+                            {{landDetails.vacant_land}}
+                        </div>
+                        <div class="col-md-3 p-2">
+                            <h5>Total shed area: </h5>
+                            {{landDetails.total_shed}} sq m
+                        </div>
+                        <div class="col-md-3 p-2">
+                            <h5>Shed area allotted: </h5>
+                            {{landDetails.shed_allot}} sq m
+                        </div>
+                        <div class="col-md-3 p-2">
+                            <h5>Vacant allotable shed area: </h5>
+                            {{landDetails.vacant_shed_allot}}
+                        </div>
+                        <div class="col-md-3 p-2">
+                            <h5>Total Vacant land: </h5>
+                            {{landDetails.vacant_allotable_land}}
+                        </div>
+                    </div>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addNewLand" tabindex="-1" role="dialog" aria-labelledby="addNewTaskLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addNewTaskLabel">Add New Land Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row gutters">
+
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label for="taskTitle">
+                                <h5>District Name</h5>
+                            </label>
+                            <input type="text" class="form-control"  placeholder="District Name" [(ngModel)]="landDetails.district_name">
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label for="taskTitle">
+                                <h5>Infrastructure Location Name</h5>
+                            </label>
+                            <input type="text" class="form-control"  placeholder="Infrastructure Location Name" [(ngModel)]="landDetails.location_name">
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label for="taskTitle">
+                                <h5>Total Land Area in sq m</h5>
+                            </label>
+                            <input type="number" class="form-control"  placeholder="Total Land Area in sq m" [(ngModel)]="landDetails.total_land" >
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label for="workOrderDate">
+                                <h5>Allotable Land Area</h5>
+                            </label>
+                            <div class="">
+                                <input type="text" class="form-control" placeholder="Allotable Land Area" [(ngModel)]="landDetails.allotable_land">
+                                <!-- <input type="datetime" name="" class="form-control" id="workOrderDate" placeholder="Work order date" [(ngModel)]="projectFunds.aa_date"> -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label for="taskTitle">
+                                <h5>Land Area allotted</h5>
+                            </label>
+                            <input type="text" class="form-control"  placeholder="Land Area allotted" [(ngModel)]="landDetails.land_allot">
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label for="packageAmount">
+                                <h5>Vacant allotable land area</h5>
+                            </label>
+                            <div class="">
+                                <input type="text" name="" class="form-control" id="packageAmount" placeholder="Vacant allotable land area" [(ngModel)]="landDetails.vacant_land">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label for="percentageProgress">
+                                <h5>Total shed area</h5>
+                            </label>
+                            <input type="number" class="form-control"  placeholder="Total shed area" [(ngModel)]="landDetails.total_shed">
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label for="percentageProgress">
+                                <h5>Shed area allotted</h5>
+                            </label>
+                            <input type="number" class="form-control"  placeholder="Shed area allotted" [(ngModel)]="landDetails.shed_allot">
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label for="financialProgress">
+                                <h5>Vacant allotable shed area</h5>
+                            </label>
+                            <input type="number" class="form-control"  placeholder="Vacant allotable shed area" [(ngModel)]="landDetails.vacant_shed_allot">
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label for="financialProgress">
+                                <h5>Total Vacant land</h5>
+                            </label>
+                            <input type="number" class="form-control"  placeholder="Total Vacant land" [(ngModel)]="landDetails.vacant_allotable_land">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer custom">
+                <div class="left-side">
+                    <button type="button" id="modalClose" class="btn btn-link danger btn-block" data-dismiss="modal">Cancel</button>
+                </div>
+                <div class="divider"></div>
+                <div class="right-side">
+                    <button type="button" (click)="addNewLandDetails()" class="btn btn-link success btn-block">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ************************* Land update model ************************** -->
+<div class="modal fade" id="landUpdate" tabindex="-1" role="dialog" aria-labelledby="landUpdate"
+	aria-hidden="true">
+	<div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addNewTaskLabel">Add New Land Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row gutters">
+
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label for="taskTitle">
+                                <h5>District Name</h5>
+                            </label>
+                            <input type="text" class="form-control"  placeholder="District Name" [(ngModel)]="selectedLand.district_name">
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label for="taskTitle">
+                                <h5>Infrastructure Location Name</h5>
+                            </label>
+                            <input type="text" class="form-control"  placeholder="Infrastructure Location Name" [(ngModel)]="selectedLand.location_name">
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label for="taskTitle">
+                                <h5>Total Land Area in sq m</h5>
+                            </label>
+                            <input type="number" class="form-control"  placeholder="Total Land Area in sq m" [(ngModel)]="selectedLand.total_land" >
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label for="workOrderDate">
+                                <h5>Allotable Land Area</h5>
+                            </label>
+                            <div class="">
+                                <input type="text" class="form-control" placeholder="Allotable Land Area" [(ngModel)]="selectedLand.allotable_land">
+                                <!-- <input type="datetime" name="" class="form-control" id="workOrderDate" placeholder="Work order date" [(ngModel)]="projectFunds.aa_date"> -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label for="taskTitle">
+                                <h5>Land Area allotted</h5>
+                            </label>
+                            <input type="text" class="form-control"  placeholder="Land Area allotted" [(ngModel)]="selectedLand.land_allot">
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label for="packageAmount">
+                                <h5>Vacant allotable land area</h5>
+                            </label>
+                            <div class="">
+                                <input type="text" name="" class="form-control" id="packageAmount" placeholder="Vacant allotable land area" [(ngModel)]="selectedLand.vacant_land">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label for="percentageProgress">
+                                <h5>Total shed area</h5>
+                            </label>
+                            <input type="number" class="form-control"  placeholder="Total shed area" [(ngModel)]="selectedLand.total_shed">
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label for="percentageProgress">
+                                <h5>Shed area allotted</h5>
+                            </label>
+                            <input type="number" class="form-control"  placeholder="Shed area allotted" [(ngModel)]="selectedLand.shed_allot">
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label for="financialProgress">
+                                <h5>Vacant allotable shed area</h5>
+                            </label>
+                            <input type="number" class="form-control"  placeholder="Vacant allotable shed area" [(ngModel)]="selectedLand.vacant_shed_allot">
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                        <div class="form-group">
+                            <label for="financialProgress">
+                                <h5>Total Vacant land</h5>
+                            </label>
+                            <input type="number" class="form-control"  placeholder="Total Vacant land" [(ngModel)]="selectedLand.vacant_allotable_land">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer custom">
+                <div class="left-side">
+                    <button type="button"  class="btn btn-link danger btn-block" data-dismiss="modal">Cancel</button>
+                </div>
+                <div class="divider"></div>
+                <div class="right-side">
+                    <button type="button" (click)="updateLand()" class="btn btn-link success btn-block">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ************************* land update model ************************** -->

@@ -1,0 +1,80 @@
+@media (max-width: 411px)
+{
+  .fontmobile {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: auto;
+  clear: both;
+  }
+  
+  .fontmobile:hover{
+    overflow: visible;
+  }
+
+}
+@media (max-width: 320px)
+{
+  .fontmobile {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: auto;
+  clear: both;
+  }
+  
+  .fontmobile:hover{
+    overflow: visible;
+  }
+
+}
+@media (max-width: 414px)
+{
+  .fontmobile {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: auto;
+  clear: both;
+  }
+  
+  .fontmobile:hover{
+    overflow: visible;
+  }
+
+}
+@media (max-width: 540px)
+{
+  .fontmobile {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: auto;
+  clear: both;
+  }
+  
+  .fontmobile:hover{
+    overflow: visible;
+  }
+
+}
+@media (max-width: 280px)
+{
+  .fontmobile {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: auto;
+  clear: both;
+  }
+  
+  .fontmobile:hover{
+    overflow: visible;
+  }
+
+}
+.cs-style{
+  font-weight: 700;
+  color: #198e5f;
+  text-decoration: underline;
+}

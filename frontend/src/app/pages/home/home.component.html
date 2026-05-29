@@ -1,0 +1,551 @@
+<!-- Loading starts -->
+<div id="loading-wrapper" *ngIf="isLodaing">
+	<div class="lds-roller">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+
+</div>
+<!-- Loading ends -->
+
+
+<!-- *************
+  ************ Header section start *************
+************* -->
+
+
+
+<!-- *************
+				************ Main container start *************
+			************* -->
+<div class="main-container" *ngIf="!isLodaing">
+
+	<!-- Content wrapper start -->
+	<!-- <div class="content-wrapper"> -->
+	<!-- Row start -->
+	<div class="row gutters">
+		<!-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-sm-12 text-danger p-1 border-bottom">
+			<marquee direction="left">
+				<b>Kindly update your valid project data with  proper fields given.  Please use login credentials shared with the corressponding departments and ULB's</b>
+				</marquee>
+		</div> -->
+		<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-sm-12">
+			<div class="container-fluid p-0">
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs p-0" role="tablist">
+					<li class="nav-item">
+						<a class="nav-link active" data-toggle="tab" href="#smart">SMART VIEW</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" data-toggle="tab" href="#tabular">TABULAR VIEW</a>
+					</li>
+				</ul>
+
+				<div class="tab-content p-0">
+					<div id="smart" class="container-fluid tab-pane active p-0">
+						<!-- smart view content start -->
+
+						<div class="task-section">
+							<!-- Row start -->
+							<div class="row no-gutters">
+								<div class="col-xl-2 col-lg-2 col-md-3 dontshowinmobile">
+									<div class="labels-container">
+										<div class="lablesContainerScroll">
+											<div class="filters-block">
+												<h5>Categories</h5>
+												<div class="filters">
+													<a href="javascript:;" (click)="showAllProjects()"
+														[ngClass]="isAllProjects ?'active':''">
+														<i class="icon-receipt"></i> All Projects
+													</a>
+													<a href="javascript:;" (click)="showCurrentProjects()"
+														[ngClass]="isCurrentProjects ?'active':''">
+														<i class="fa-solid fa-hourglass-end"></i> Ongoing Projects
+													</a>
+													<a href="javascript:;" (click)="showFinishedProjects()"
+														[ngClass]="isFinishedProjects ?'active':''">
+														<i class="icon-check_circle"></i> Completed Projects
+													</a>
+
+												</div>
+											</div>
+											<div class="filters-block">
+												<h5>Feedback</h5>
+												<div class="filters">
+													<a href="javascript:;" (click)="goToFeedback()">
+														<i class="icon-chat"></i> Give Feedback
+													</a>
+												</div>
+											</div>
+
+											<!-- <div class="filters-block">
+												<h5>Land Allocation</h5>
+												<div class="filters">
+													<a href="javascript:;" (click)="goToLandDetails()">
+														<i class="icon-map"></i> Land Details
+													</a>
+												</div>
+											</div> -->
+
+											<div class="filters-block">
+												<h5>KML Representation</h5>
+
+												<div class="filters" style="padding: 0px;margin-top:30px;">
+													<h5 class="blink_me text-center">(View in GPS Map )</h5>
+													<h4 class="blink_me text-center"><i class="icon-arrow-down"></i>
+													</h4>
+													<a href="javascript:;" (click)="goToKMLRepresentation()"
+														style="padding: 0px;" [ngClass]="isAllProjects ?'active':''">
+														<img src="assets/images/kml.png" style="    height: 200px !important;
+													width: 95%;
+													margin: 8px;
+													border: 1px solid #ffffff;
+													box-shadow: 0px 5px 10px #cecece;
+												" alt="GMC" />
+
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-xl-10 col-md-9 col-sm-12" style="overflow: hidden !important;">
+
+									<!-- working  -->
+
+
+									<!-- Tab panes -->
+
+									<div class="tasks-container p-0">
+										<div class="modal fade" id="addNewTask" tabindex="-1" role="dialog"
+											aria-labelledby="addNewTaskLabel" aria-hidden="true">
+											<div class="modal-dialog modal-xl" role="document">
+												<div class="modal-content">
+													<app-create-project (added)="added($event)"></app-create-project>
+												</div>
+											</div>
+										</div>
+										<!-- <div class="custom-search showInMobile" style="margin-left: 8px; margin-top: 5px;">
+										<input type="text" class="search-query" placeholder="Search here ..."
+											[(ngModel)]="searchText">
+										<i class="icon-search1"></i>
+									</div> -->
+										<div class="tasks-header">
+											<div class="showInMobile">
+												<div>
+													<div class="lablesContainerScroll">
+														<div class="filters-block" style="text-align: center;">
+															<div class="filters">
+																<a class="px-3" href="javascript:;"
+																	(click)="showAllProjects()"
+																	style="padding: 3px 3px;"
+																	[ngClass]="isAllProjects ?'active':''">
+																	<i class="icon-receipt"></i> All
+																</a>
+																<a class="px-3" href="javascript:;"
+																	(click)="showCurrentProjects()"
+																	style="padding: 3px 3px;"
+																	[ngClass]="isCurrentProjects ?'active':''">
+																	<i class="fa-solid fa-hourglass-end"></i> Current
+																</a>
+																<a class="px-3" href="javascript:;"
+																	(click)="showFinishedProjects()"
+																	style="padding: 3px 3px;"
+																	[ngClass]="isFinishedProjects ?'active':''">
+																	<i class="icon-check_circle"></i> Finished
+																</a>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<h3 style="font-size: 18px; font-weight: unset;">{{tabHeading}}
+												({{showingProjects.length}})<span class=""
+													id="">{{tabSubHeading}}</span></h3>
+											<ul class="app-actions">
+
+												<li *ngIf="permission.addStepsPrivilage || userRole.role === 'sv'">
+													<a href="#" data-toggle="modal" data-placement="top"
+														data-target="#projectFilter" title=""
+														data-original-title="Project Filter">
+														<i class="icon-filter"></i> &nbsp; Project Filter
+													</a>
+												</li>&nbsp;
+
+												<li *ngIf="userRole.role === 'citizen'">
+													<a href="#" data-toggle="modal" data-placement="top"
+														data-target="#projectFilter" title=""
+														data-original-title="Project Filter">
+														<i class="icon-filter"></i> &nbsp; Project Filter
+													</a>
+												</li>&nbsp;
+
+												<li>
+												<a href="#" data-toggle="tooltip" data-placement="top" title=""
+													data-original-title="Download CSV" (click)="download()">
+													<i class="icon-cloud_download"></i> &nbsp; Download CSV
+												</a>
+											</li>&nbsp;
+												<li *ngIf="permission.addStepsPrivilage">
+													<a href="#" data-toggle="modal" data-target="#addSteps"
+														data-placement="top" title="" data-original-title="Add Steps">
+														<i class="icon-add"></i>
+														&nbsp;Add Steps
+													</a>
+												</li>&nbsp;
+												<li *ngIf="permission.projectCeationPrivilage">
+													<a href="#" data-toggle="modal" data-target="#addNewTask"
+														data-placement="top" title=""
+														data-original-title="Add New Project">
+														<i class="icon-plus"></i> New Project
+													</a>
+												</li>
+											</ul>
+
+										</div>
+										<div class="mobile-view">
+											<ul class="inmobile app-actions">
+												<li *ngIf="permission.addStepsPrivilage || userRole.role === 'su'">
+													<a href="#" data-toggle="modal" data-placement="top"
+														data-target="#projectFilter" title=""
+														data-original-title="Project Filter">
+														<i class="icon-filter"></i> &nbsp; Project Filter
+													</a>
+												</li>&nbsp;
+
+												<li *ngIf="userRole.role === 'citizen'">
+													<a href="#" data-toggle="modal" data-placement="top"
+														data-target="#projectFilter" title=""
+														data-original-title="Project Filter">
+														<i class="icon-filter"></i> &nbsp; Project Filter
+													</a>
+												</li>&nbsp;
+
+												<li>
+													<a href="#" data-toggle="tooltip" data-placement="top" title=""
+														data-original-title="Download CSV" (click)="download()">
+														<i class="icon-cloud_download"></i> &nbsp; Download CSV
+													</a>
+												</li>&nbsp;
+												<li *ngIf="permission.addStepsPrivilage">
+													<a href="#" data-toggle="modal" data-target="#addSteps"
+														data-placement="top" title="" data-original-title="Add Steps">
+														<i class="icon-add"></i>
+														&nbsp;Add Steps
+													</a>
+												</li>&nbsp;
+												<li *ngIf="permission.projectCeationPrivilage">
+													<a href="#" data-toggle="modal" data-target="#addNewTask"
+														data-placement="top" title=""
+														data-original-title="Add New Project">
+														<i class="icon-plus"></i> New Project
+													</a>
+												</li>
+											</ul>
+											<h3 class="inmobile app-actions"
+												style="font-size: 18px; font-weight: unset;">{{tabHeading}}
+												({{showingProjects.length}}) | &nbsp; <span class=""
+													id="">{{tabSubHeading}}</span></h3>
+										</div>
+										<div class="filters formobile" style="padding: 0px;">
+											<h5 class="blink_me text-center">(View in GPS Map )</h5>
+										</div>
+										<br />
+										<div class="row" style="padding: 10px;">
+											<div class="col-lg-12">
+												<div class="">
+													<input type="text" class="form-control" name="search"
+														[(ngModel)]="searchText" autocomplete="off"
+														placeholder="Search here ...">
+												</div>
+											</div>
+										</div>
+										<br />
+										<div class="search-results" infiniteScroll [infiniteScrollDistance]="6"
+											[infiniteScrollThrottle]="50" (scrolled)="onScroll()"
+											[scrollWindow]="false">
+											<!-- Row start -->
+											<div class="row no-gutters justify-content-center">
+												<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+													<section class="task-list">
+														<!-- Task #1 -->
+														<div class="search-results" infiniteScroll
+															[infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
+															(scrolled)="onScroll()">
+															<div class="task-block filter-container"
+																*ngFor="let project of showingProjects | filter:searchText">
+																<!-- {{project.aa_status|json}} -->
+																<!-- <div class="task-checkbox filter-item filter-{{project.aa_status}}">
+															<img *ngIf="project['file_repo.avatar'] != null"
+																src="{{endpoint}}/docs/{{project.id}}/{{project['file_repo.avatar']}}"
+																alt="" width=70 height=70 style="border-radius: 50%;">
+															<img *ngIf="project['file_repo.avatar'] == null || project['file_repo.avatar'] == 'null'"
+																src='{{endpoint}}/docs/default.png' alt="" width=70 height=70
+																style="border-radius: 50%;">
+														</div> -->
+																<div class="task-details">
+																	<div class="task-name"> <a target="_blank"
+																			routerLink="/project-details/{{project.id}}">{{project.name}}</a>
+																	</div>
+																	<div class="task-desc" style="margin-bottom: 0px;">
+																		<b><i class="fa-regular fa-building"></i>
+																			Project type:</b> {{project.type}} |
+																		<b><i class="fas fa-chart-line"></i> Physical
+																			progress:</b>
+																		{{project.percentageProgress}}% |
+																		<b><i class="fa-solid fa-user"></i> Assigned
+																			Contractor:</b> {{project.contractor_name}}
+																	</div>
+																	<div class="task-desc" style="padding-top: 3px;">
+																		{{project.description}}</div>
+																	<div class="task-types">
+																		<a target="_blank"
+																			routerLink="/project-details/{{project.id}}"><span
+																				class="badge badge-light">Details <i
+																					class="icon-arrow-right"></i></span></a>
+																	</div>
+
+																</div>
+																<ul class="task-actions">
+																	<li>
+
+																		<a (click)="navigateAndPrint(project.id)"
+																			class="important" data-toggle="tooltip"
+																			data-placement="top" title="Print progress">
+																			<i class="icon-print"></i>
+																		</a>
+																	</li>
+
+																	<li class="dropdown"
+																		*ngIf="project.status==='Ongoing' && permission.projectUpdationPrivilage">
+																		<a href="#" id="task-actions"
+																			data-toggle="dropdown" aria-haspopup="true">
+																			<i class="icon-more_vert"></i>
+																		</a>
+																		<div class="dropdown-menu dropdown-menu-right"
+																			aria-labelledby="task-actions">
+																			<a href="#"
+																				(click)="showStatusModal(project)"
+																				data-toggle="modal"
+																				data-target="#projectStatus"
+																				data-placement="top" title=""
+																				data-original-title="Project Status Update">
+																				<i class="icon-done_all"></i> Mark as
+																				complete
+																			</a>
+																			<a
+																				routerLink="/project-details/{{project.id}}">
+																				<i class="icon-mode_edit"></i> Edit
+																				Project
+																			</a>
+																			<a href="#"
+																				(click)="showProjectDeleteModal(project)"
+																				data-toggle="modal"
+																				data-target="#projectDelete"
+																				data-placement="top" title=""
+																				data-original-title="Project Deletetion">
+																				<i class="icon-trash"></i> Delete
+																				Project
+																			</a>
+																		</div>
+																	</li>
+																</ul>
+															</div>
+														</div>
+														<!-- spinner -->
+														<!-- <div class="row pb-5">
+														<div class="col-md-12 p-5">
+														<ngx-spinner
+														bdOpacity = 0.9
+														bdColor = ""
+														size = "default"
+														color = "#581f87"
+														type = "ball-pulse-sync"
+														[fullScreen] = "false"
+														>
+														</ngx-spinner>
+													</div>
+													</div> -->
+
+													</section>
+												</div>
+											</div>
+											<!-- Row end -->
+										</div>
+
+									</div>
+									<!-- smart view content end -->
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="tabular" class="container-fluid tab-pane fade"><br>
+						<!-- tabular view content start -->
+
+						<small><ng2-smart-table style="font-size: 14px;" [settings]="settings" [source]="data">
+
+
+
+							</ng2-smart-table></small>
+						<!-- tabular view content end -->
+					</div>
+					<!-- end working  -->
+				</div>
+			</div>
+		</div>
+		<!-- Row end -->
+
+		<!-- </div> -->
+		<!-- Content wrapper end -->
+
+	</div>
+	<!-- ************************* Main container end ************************** -->
+
+
+
+
+	<!-- ************************* Project status update model ************************** -->
+	<div class="modal fade" id="projectStatus" tabindex="-1" role="dialog" aria-labelledby="ProjectStatus"
+		aria-hidden="true">
+		<div class="modal-dialog modal-md" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="addNewTaskLabel">Project Status</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row gutters">
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+							<div class="form-group">
+								<label for="actualEndDate">Project completed on(actual end date)</label>
+								<div class="">
+									<input type="date" name="" class="form-control" id="actualEndDate"
+										placeholder="Actual end date" [(ngModel)]="projectEndDate">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer custom">
+					<div class="left-side">
+						<button type="button" class="btn btn-link danger btn-block" data-dismiss="modal">Cancel</button>
+					</div>
+					<div class="divider"></div>
+					<div class="right-side">
+						<button type="button" (click)="updateProjectStatus()" [disabled]="isStatusUpdating"
+							class="btn btn-link success btn-block">Update</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ************************* End project status update model ************************** -->
+
+	<!-- ************************* Project status update model ************************** -->
+	<div class="modal fade" id="projectDelete" tabindex="-1" role="dialog" aria-labelledby="projectDelete"
+		aria-hidden="true">
+		<div class="modal-dialog modal-md" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="addNewTaskLabel">Confirmation</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row gutters">
+						<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+							Deleting project <strong>"{{selectedProject.name}}"</strong>. Are you sure?
+						</div>
+						<input type="hidden" class="form-control" placeholder="Contractor."
+							[(ngModel)]="selectedProject.id">
+
+					</div>
+				</div>
+				<div class="modal-footer custom">
+					<div class="left-side">
+						<button type="button" class="btn btn-link danger btn-block" data-dismiss="modal">No</button>
+					</div>
+					<div class="divider"></div>
+					<div class="right-side">
+						<button type="button" (click)="deleteProject()" [disabled]="isStatusUpdating"
+							class="btn btn-link success btn-block">Yes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ************************* End project status update model ************************** -->
+
+	<div class="modal fade" id="addSteps" tabindex="-1" role="dialog" aria-labelledby="Add Steps" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h3 class="modal-title" id="addNewTaskLabel">Add Steps</h3>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+					<div class="form-group">
+						<label for="projectType">
+							<h5>Project Type</h5>
+						</label>
+						<div>
+							<select class="form-control" name="projectType" [(ngModel)]="projectType">
+								<option value="" disabled="disabled">- Select Project Type -</option>
+								<option value="Land Development">Land Development</option>
+								<option value="Industrial Shed">Industrial Shed</option>
+								<option value="Road">Road</option>
+								<option value="IT Hardware Work">IT Hardware Work</option>
+								<option value="IT Software Work">IT Software Work</option>
+								<option value="Assam Startup (Nest)">Assam Startup (Nest)</option>
+								<option value="Others">Others</option>
+							</select>
+						</div>
+					</div>
+
+					<form [formGroup]="form">
+						<div *ngIf="form.controls.published.value">
+							<button type="button" class="btn btn-primary" (click)="addCreds()"><i class="icon-add"></i>
+								&nbsp;Add Steps</button>
+							<br>
+							<br>
+
+							<div formArrayName="steps"
+								*ngFor="let creds of form.controls.steps?.value; let i = index trackBy:trackByFn">
+								<div [formGroupName]="i">
+									<label>Step {{i+1}}: </label>
+									<input placeholder="Step" formControlName="step" class="form-control">
+									<br>
+								</div>
+							</div>
+
+						</div>
+					</form>
+
+				</div>
+				<div class="modal-footer">
+					<div class="left-side">
+						<button type="button" class="btn btn-link danger btn-block" data-dismiss="modal">Cancel</button>
+					</div>
+					<div class="divider"></div>
+					<!-- <div class="right-side">
+					<button type="button" [disabled]="false" (click)="addSteps()"
+						class="btn btn-submit-custom btn-lg"><span
+							style="color:green;font-weight: bold;">Submit</span></button>
+				</div> -->
+				</div>
+			</div>
+		</div>
+	</div>

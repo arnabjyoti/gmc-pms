@@ -1,0 +1,18 @@
+/* select {
+    width:100px; 
+    overflow:hidden; 
+    white-space:nowrap; 
+    text-overflow:ellipsis;
+} */
+select option {
+    width:100px;
+    text-overflow:ellipsis;
+    overflow:hidden;
+}
+.scroll {
+    height:65vh;
+    overflow-y: scroll;
+}
+.hand{
+    cursor: pointer;
+}

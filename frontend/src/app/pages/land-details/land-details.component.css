@@ -1,0 +1,15 @@
+.card-bt {
+    padding: 0.75rem 1.25rem !important;
+    margin-bottom: 0 !important;
+    background-color: rgba(0,0,0,.03) !important;
+    border-bottom: 1px solid rgba(0,0,0,.125) !important;
+}
+.land-title {
+    font-size: 1rem;
+
+}
+.btn-warning {
+    color: #212529;
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
