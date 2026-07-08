@@ -8,6 +8,7 @@ import { ImageGalleryService } from "./image-gallery.service";
 import * as _ from "underscore";
 import * as $ from "jquery";
 import { ProjectDetailsService } from "../../project-details.service";
+import { th } from "date-fns/locale";
 
 @Component({
   selector: "app-image-gallery",
@@ -124,9 +125,10 @@ export class ImageGalleryComponent implements OnInit {
       _.findWhere(photos, { isDefault: 1 }) || [],
       _.where(photos, { isDefault: 0 }) || []
     );
-
     this.imageGallery = _.filter(documents, (d: any) => {
-      return d.docType == "imageGallery";
+      
+      
+      return d.docType == "projectImages";
     });
 
     console.log("ProjectImages=====", this.imageGallery);

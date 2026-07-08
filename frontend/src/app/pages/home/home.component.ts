@@ -197,14 +197,11 @@ export class HomeComponent implements OnInit {
           config: {
             selectText: 'All',
             list: [
-              {value: 'Construction', title: 'Construction'},
-              {value: 'Land Development', title: 'Land Development'},
-              {value: 'Industrial Shed', title: 'Industrial Shed'},
-              {value: 'Road', title: 'Road'},
-              {value: 'IT Hardware Work', title: 'IT Hardware Work'},
-              {value: 'IT Software Work', title: 'IT Software Work'},
-              {value: 'Assam Startup (Nest)', title: 'Assam Startup (Nest)'},
-              {value: 'Others', title: 'Others'},
+              {value: 'Community Hall', title: 'Community Hall'},
+              {value: 'Toilet Block', title: 'Toilet Block'},
+              {value: 'Other Works', title: 'Other Works'},
+              {value: 'Roads & Drains', title: 'Roads & Drains'},
+              {value: 'Crore Works', title: 'Crore Works'}
             ]
           }
         }
@@ -251,17 +248,12 @@ export class HomeComponent implements OnInit {
           config: {
             selectText: 'All',
             list: [
-              {value: 'Chinmoy Prakash Phookan, MD', title: 'Chinmoy Prakash Phookan, MD'},
-              {value: 'Ritumoni Pachani, GM', title: 'Ritumoni Pachani, GM'},
-              {value: 'Pulak Jyoti Das, DGM (C & F)', title: 'Pulak Jyoti Das, DGM (C & F)'},
-              {value: 'Anuj P. Sarmah, DGM(PM)', title: 'Anuj P. Sarmah, DGM(PM)'},
-              {value: 'Deepak Kalita, Manager (E)', title: 'Deepak Kalita, Manager (E)'},
-              {value: 'Victor Bashiya, DM(C)', title: 'Victor Bashiya, DM(C)'},
-              {value: 'Rajib Kr. Saikia, AM(C)', title: 'Rajib Kr. Saikia, AM(C)'},
-              {value: 'Poran Kr. Bora, AM(C)', title: 'Poran Kr. Bora, AM(C)'},
-              {value: 'Apurba Kr. Kalita, AM(C)', title: 'Apurba Kr. Kalita, AM(C)'},
-              {value: 'Rajiv Saikia, AE(C)',	title: 'Rajiv Saikia, AE(C)'},
-              {value: 'Dhurba Jyoti Bora, AE(C)',	title: 'Dhurba Jyoti Bora, AE(C)'},
+              {value: 'Division 1', title: 'Division 1'},
+              {value: 'Division 2', title: 'Division 2'},
+              {value: 'Division 3', title: 'Division 3'},
+              {value: 'Division 4', title: 'Division 4'},
+              {value: 'Division 5', title: 'Division 5'},
+              {value: 'Division 6', title: 'Division 6'},
             ],
           },
       }

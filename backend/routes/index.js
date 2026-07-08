@@ -152,5 +152,9 @@ module.exports = (app) => {
 
 	app.post('/api/getAllProjectsByUser', MobileAppController.getAllProjectsByUser); //for mobile app
 
+	app.post('/api/getImagesById', MobileAppController.getAllImagesByUser); //for mobile app
+
+	app.post('/api/imageMigration', MobileAppController.imageMigration); //for mobile app
+
 	app.post('/api/uploadFileMob', MobileAppController.upload_config.single('file'), MobileAppController.uploadFile); //for mobile app
 };

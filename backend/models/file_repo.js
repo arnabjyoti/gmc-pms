@@ -33,6 +33,7 @@ module.exports = (sequelize, type) => {
         isActive: type.STRING,
         rememberToken: type.STRING,
         folder_id: type.STRING,
+        user_id: type.STRING,
     }, {});
     file_repo.associate = function(models) {
         // associations can be defined here

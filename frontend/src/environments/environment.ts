@@ -5,9 +5,9 @@
 export const environment = {
   production: false,
   test:true,
-  // BASE_URL: 'http://statedatacenterdispuraiidc.com:9000'
+  BASE_URL: 'https://backend.gmcpmms.com'
   // BASE_URL: 'https://103.158.205.90:8500'
-  BASE_URL: 'http://localhost:8500'
+  // BASE_URL: 'http://localhost:8500'
 };
 
 /*
