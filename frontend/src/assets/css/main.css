@@ -433,14 +433,10 @@ h3.styled {
 	************************************************
 ************************************************/
 .header {
-  padding: 0.1rem 1rem;
+  padding: 0.3rem 1rem;
   z-index: 100;
   position: relative;
-  /* margin-bottom: 1.25rem; */
-  /* background: #2e343c; */
-  /* background-image: linear-gradient(to right, #0879a3, #007aa0, #007c9d, #007d99, #007e95, #087b91, #0e788d, #137589, #186e83, #1d667d, #205f76, #23586f); */
-  background: rgb(12,193,57);
-  background: linear-gradient(90deg, rgba(12,193,57,1) 0%, rgba(0,216,83,1) 22%, rgba(17,225,156,1) 100%);
+  background: linear-gradient(90deg, rgb(122, 190, 230) 0%, rgb(52, 174, 235) 22%, rgb(18, 129, 207) 100%);
   display: flex;
   align-items: center;
   justify-content: space-between; }
@@ -455,8 +451,8 @@ h3.styled {
         text-decoration: none;
         opacity: 0.7; }
       .header .logo-wrapper a.logo img {
-        max-width: 120px;
-        max-height: 36px; }
+        max-width: 60px;
+        max-height: 30px; }
     .header .logo-wrapper a.quick-links-btn {
       display: flex;
       justify-content: center;
@@ -1104,7 +1100,7 @@ ul.header-tasks:last-child {
 	************************************************
 ************************************************/
 .main-footer {
-  background: #f5f9f7;
+  background: #cceefd;
     position: fixed;
     bottom: -22px;
     width: 100%;

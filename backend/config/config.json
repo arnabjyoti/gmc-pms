@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "",
-    "database": "dohua_db",
-    "host": "127.0.0.1",
+    "username": "u476288869_pmms",
+    "password": "8z:S$#@mjB|X",
+    "database": "u476288869_pmms",
+    "host": "82.25.121.109",
     "dialect": "mysql",
     "operatorsAliases": false,
     "FILE_UPLOAD_PATH": "/home/ec2-user/dohua/files",
@@ -14,10 +14,10 @@
     }
   },
   "test": {
-    "username": "root",
-    "password": "",
-    "database": "aiidc_dispur",
-    "host": "127.0.0.1",
+    "username": "u476288869_pmms",
+    "password": "8z:S$#@mjB|X",
+    "database": "u476288869_pmms",
+    "host": "82.25.121.109",
     "dialect": "mysql",
     "operatorsAliases": false,
     "FILE_UPLOAD_PATH": "D:\\AIIDC\\Backend\\image",

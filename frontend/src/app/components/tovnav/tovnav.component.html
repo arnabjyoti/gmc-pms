@@ -2,13 +2,12 @@
 <header class="header">
   <div class="logo-wrapper">
     <a routerLink="/home" class="logo">
-      <img src="assets/apple-touch-icon.png" style="min-height: 80px !important;" alt="GMC" />
-      <!-- <img src="assets/Gati-Shakti-Logo.jpg" alt="AIIDC" /> -->
+      <img src="assets/apple-touch-icon.png" style="min-height: 60px !important;" alt="GMC" />
     </a>
     
-    <h3 style="font-weight: unset; color: aliceblue;text-transform: uppercase;" class="top-heading-lg">GMC<br>
-      <span style="font-size: 18px;">PROJECT MONITORING SYSTEM</span>
-    </h3>
+    <h5 style="font-weight: unset; color: aliceblue;text-transform: uppercase;" class="top-heading-lg">Guwahati Municipal Corporation<br>
+      <span style="font-size: 10px;"><i>PROJECT MONITORING & Management SYSTEM</i></span>
+    </h5>
     
   </div>
 
@@ -19,7 +18,7 @@
       <li><button class="btn btn-success" *ngIf="isCitizen" (click)="signout()">login</button></li>
       <li class="dropdown" *ngIf="!isCitizen">
         <a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
-          <span class="user-name" style="color:aliceblue !important;margin-right: 10px;">Welcome {{user.name}}</span>
+          <span class="user-name" style="color:aliceblue !important; margin-right: 10px; font-size: 12px;">Welcome, {{user.name}}</span>
           <!-- <span class="avatar">{{shortName}}<span class="status busy"></span></span> -->
           <span class="avatar">{{shortName}}</span>
         </a>
